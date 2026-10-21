@@ -271,6 +271,18 @@ ul.cards .tg{display:block;font-size:.82rem;color:var(--muted);line-height:1.3;m
 ol.plain{padding-left:1.3rem;margin:0;display:grid;gap:.45rem}
 
 /* ---------- print ---------- */
+/* Reference sections, collapsed by default so steps stay near the top */
+details.more{margin-top:1.75rem;border-top:1px solid var(--rule)}
+details.more>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 0 .2rem}
+details.more>summary::-webkit-details-marker{display:none}
+details.more>summary h2{margin:0}
+details.more>summary::after{content:"+";font:400 1.4rem/1 var(--display);color:var(--head);flex:none}
+details.more[open]>summary::after{content:"\2212"}
+details.more>summary:focus-visible{outline:2px solid var(--head);outline-offset:3px;border-radius:.2rem}
+details.more .more-b{padding-top:.4rem}
+details.more.evidence .lvl{margin-top:.2rem}
+@media print{details.more>summary::after{display:none}details.more .more-b{display:block!important}}
+
 @media print{
   .band,.actions,.jump,.pager,.ov,footer,.h-row button,.reflect .tried,.reflect textarea,.note-l,.note-saved,.skip,.tabs [role=tablist]{display:none!important}
   body{background:#fff;color:#000;font-size:11pt}

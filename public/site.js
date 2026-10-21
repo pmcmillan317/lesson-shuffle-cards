@@ -248,3 +248,25 @@
     apply();
   }
 })();
+
+// Open a collapsed reference section when it is linked to, and before printing
+(function () {
+  function openFor(hash) {
+    if (!hash || hash.length < 2) return;
+    var el = document.getElementById(decodeURIComponent(hash.slice(1)));
+    if (el && el.tagName === 'DETAILS') el.open = true;
+    else if (el && el.closest) { var d = el.closest('details'); if (d) d.open = true; }
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (a) openFor(a.getAttribute('href'));
+  });
+  window.addEventListener('hashchange', function () { openFor(location.hash); });
+  openFor(location.hash);
+  window.addEventListener('beforeprint', function () {
+    Array.prototype.forEach.call(document.querySelectorAll('details.more'), function (d) { d.dataset.wasOpen = d.open ? '1' : ''; d.open = true; });
+  });
+  window.addEventListener('afterprint', function () {
+    Array.prototype.forEach.call(document.querySelectorAll('details.more'), function (d) { d.open = d.dataset.wasOpen === '1'; });
+  });
+})();
