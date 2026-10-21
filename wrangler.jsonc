@@ -1,0 +1,12 @@
+{
+  // Lesson Shuffle card site: static pages served as a Cloudflare Worker.
+  "name": "lesson-shuffle-cards",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./public",
+    // /concept-clash serves concept-clash.html (no .html in the QR links)
+    "html_handling": "auto-trailing-slash",
+    // unknown addresses show 404.html
+    "not_found_handling": "404-page"
+  }
+}
