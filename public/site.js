@@ -270,3 +270,18 @@
     Array.prototype.forEach.call(document.querySelectorAll('details.more'), function (d) { d.open = d.dataset.wasOpen === '1'; });
   });
 })();
+
+// Printed card image: tap to view large (Oct 21)
+(function () {
+  var a = document.querySelector('[data-cardimg]');
+  if (!a || typeof HTMLDialogElement !== 'function') return;
+  var d = document.createElement('dialog');
+  d.className = 'cardview';
+  d.setAttribute('aria-label', a.querySelector('img').alt);
+  d.innerHTML = '<button type="button" aria-label="Close">×</button><img alt="">';
+  var big = d.querySelector('img');
+  big.alt = a.querySelector('img').alt;
+  document.body.appendChild(d);
+  a.addEventListener('click', function (e) { e.preventDefault(); big.src = a.getAttribute('href'); d.showModal(); });
+  d.addEventListener('click', function () { d.close(); });
+})();
