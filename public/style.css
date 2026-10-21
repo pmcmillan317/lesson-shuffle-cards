@@ -311,3 +311,11 @@ dialog.cardview button{position:fixed;top:12px;right:12px;width:48px;height:48px
 @media (min-width:561px){.lflow ol{display:grid;grid-template-columns:repeat(auto-fit,minmax(5.75rem,1fr))}}
 /* Timeline labels: middle label drops below the line on phones so labels never overlap (Oct 21) */
 @media (max-width:520px){.dg-tl li span{width:5.6rem;font-size:.75rem}.dg-tl li:nth-child(2) span{bottom:auto;top:1.6rem}.dg-tl{padding-bottom:2.8rem}}
+
+/* Hook menu (Oct 21) */
+.hooks{display:grid;gap:.9rem;margin-top:.8rem}
+.hook{background:var(--surface);border:1px solid var(--rule);border-left:.3rem solid var(--suit);border-radius:var(--r);padding:.8rem 1rem}
+.hook h3{margin:0 0 .2rem}
+.hook .hk-when{color:var(--muted);font-size:.92rem;margin:0 0 .5rem}
+.hook ul.list{margin:0}
+@media (min-width:640px){.hooks{grid-template-columns:1fr 1fr}}
