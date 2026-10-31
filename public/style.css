@@ -319,3 +319,9 @@ dialog.cardview button{position:fixed;top:12px;right:12px;width:48px;height:48px
 .hook .hk-when{color:var(--muted);font-size:.92rem;margin:0 0 .5rem}
 .hook ul.list{margin:0}
 @media (min-width:640px){.hooks{grid-template-columns:1fr 1fr}}
+.dg-word{display:flex;justify-content:center;margin:0 0 .7rem}
+.dg-word b{font:400 1.6rem/1.1 var(--display);color:var(--title);background:var(--surface);border:2px solid var(--line);border-radius:999px;padding:.45rem 1.4rem;text-transform:lowercase}
+.dg-frayer{grid-template-columns:1fr 1fr}
+.dg-frayer div:nth-child(3){border-top-color:#e57373}
+.dg-frayer div:nth-child(4){background:var(--surface);border:2px dashed var(--line);border-top:.35rem solid var(--suit)}
+@media (max-width:380px){.dg-frayer{grid-template-columns:1fr}}
