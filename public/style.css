@@ -460,3 +460,5 @@ footer{margin-top:2rem;background:var(--surface)}
 .prompt .copy{min-height:36px;padding:.35rem .8rem;font-size:.85rem}
 .prompt-t{font:400 .92rem/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;margin:0;white-space:pre-wrap;color:var(--ink)}
 .prompt-n{font-size:.85rem;color:var(--muted);margin:.5rem 0 0}
+.r-share{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin-top:.4rem}
+.r-share-msg{font-size:.9rem}
