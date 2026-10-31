@@ -315,6 +315,15 @@
     }
   }
 
+
+  /* ---------- copy prompt buttons ---------- */
+  $$('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = $('.prompt-t', b.closest('.prompt'));
+      var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600); };
+      try { navigator.clipboard.writeText(t.textContent).then(done, function () {}); } catch (e) {}
+    });
+  });
   /* ---------- print + copy link ---------- */
   $$('[data-print]').forEach(function (b) { b.addEventListener('click', function () { window.print(); }); });
   $$('[data-share]').forEach(function (b) {

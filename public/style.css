@@ -444,3 +444,19 @@ footer{margin-top:2rem;background:var(--surface)}
   .actions [data-open-timer] svg{width:1.15rem;height:1.15rem}
   .move p{font-size:1.08rem}
 }
+/* Tech upgrades */
+.tech-sub{font-size:.9rem;margin:0 0 .6rem}
+.techlist{list-style:none;padding:0;margin:0;display:grid;gap:.6rem}
+.techlist li{background:var(--bg);border:1px solid var(--rule);border-radius:.6rem;padding:.7rem .85rem}
+.techlist b{display:block;color:var(--title);margin:.25rem 0 .1rem;line-height:1.3}
+.techlist .tx{display:block;font-size:.95rem;line-height:1.5}
+.lv{display:inline-block;font:600 .7rem/1 var(--body);letter-spacing:.06em;text-transform:uppercase;padding:.3rem .5rem;border-radius:999px}
+.lv-a{background:#e7f1fb;color:#2b5a80}.lv-m{background:#e5f4e4;color:#24603a}.lv-r{background:#efedff;color:#4a3d9a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .lv-a{background:#1f3242;color:#a9d1f2}:root:not([data-theme="light"]) .lv-m{background:#1f3a28;color:#a6e0b0}:root:not([data-theme="light"]) .lv-r{background:#2c2850;color:#c9c2ff}}
+/* AI prompts */
+.prompt{border:1px solid var(--rule);border-radius:.6rem;background:var(--bg);padding:.7rem .85rem;margin:0 0 .7rem}
+.prompt-h{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:.35rem}
+.prompt-h b{color:var(--title)}
+.prompt .copy{min-height:36px;padding:.35rem .8rem;font-size:.85rem}
+.prompt-t{font:400 .92rem/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;margin:0;white-space:pre-wrap;color:var(--ink)}
+.prompt-n{font-size:.85rem;color:var(--muted);margin:.5rem 0 0}
