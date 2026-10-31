@@ -6,6 +6,10 @@
     set: function (k, v) { try { window.localStorage.setItem(k, v); } catch (e) {} },
     del: function (k) { try { window.localStorage.removeItem(k); } catch (e) {} }
   };
+  /* ---------- offline support ---------- */
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
+  }
   function $(s, r) { return (r || document).querySelector(s); }
   function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
   function el(tag, attrs, html) {
@@ -235,6 +239,7 @@
             (f.kind === 'lines' ? '>' + esc(val(f)) + '</textarea>' : ' value="' + esc(val(f)) + '">') + '</label>';
         }
       });
+      h += '<div class="r-share"><button type="button" class="btn-ghost" data-share-setup>Copy setup link</button><span class="r-share-msg muted" aria-live="polite">Opens these slides with your content on any device.</span></div>';
       h += '<div class="r-starts"><button type="button" class="btn-main" data-go="0">Start slides</button>';
       build();
       deck.forEach(function (s, k) { if (s.jump) h += '<button type="button" class="btn-ghost" data-go="' + k + '">Jump to: ' + esc(s.jump) + '</button>'; });
@@ -250,7 +255,27 @@
         });
       });
       $$('[data-go]', rBody).forEach(function (b) { b.addEventListener('click', function () { build(); show(+b.dataset.go); }); });
+      var sh = $('[data-share-setup]', rBody);
+      if (sh) sh.addEventListener('click', function () {
+        var o = {};
+        fields.forEach(function (f) { var v = store.get(fkey + f.key); if (v != null && v !== '' && v !== '[]') o[f.key] = v; });
+        var enc = btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+        var url = location.origin + location.pathname.replace(/\.html$/, '') + '#setup=' + enc;
+        var msg = $('.r-share-msg', rBody);
+        var ok = function () { sh.textContent = 'Link copied'; msg.textContent = 'Paste it in an email, Classroom post or doc to open these slides anywhere.'; setTimeout(function () { sh.textContent = 'Copy setup link'; }, 2000); };
+        try { navigator.clipboard.writeText(url).then(ok, function () { window.prompt('Copy this link:', url); }); } catch (e) { window.prompt('Copy this link:', url); }
+      });
       var first = $('input,textarea', rBody); if (first) first.focus();
+    }
+    var hm = /#setup=([A-Za-z0-9_-]+)/.exec(location.hash || '');
+    if (hm && fields.length) {
+      try {
+        var b64 = hm[1].replace(/-/g, '+').replace(/_/g, '/'); while (b64.length % 4) b64 += '=';
+        var got = JSON.parse(decodeURIComponent(escape(atob(b64))));
+        fields.forEach(function (f) { if (typeof got[f.key] === 'string') store.set(fkey + f.key, got[f.key]); });
+        history.replaceState(null, '', location.pathname);
+        setTimeout(function () { build(); openOverlay(runOv); setup(); var m = $('.r-note', rBody); if (m) m.textContent = 'Content loaded from your setup link and saved on this device. Check it, then start.'; }, 0);
+      } catch (e) {}
     }
     if (fields.length) {
       editBtn = el('button', { type: 'button', 'class': 'r-fs r-edit' }, 'Edit content');
@@ -315,6 +340,15 @@
     }
   }
 
+
+  /* ---------- copy prompt buttons ---------- */
+  $$('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = $('.prompt-t', b.closest('.prompt'));
+      var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600); };
+      try { navigator.clipboard.writeText(t.textContent).then(done, function () {}); } catch (e) {}
+    });
+  });
   /* ---------- print + copy link ---------- */
   $$('[data-print]').forEach(function (b) { b.addEventListener('click', function () { window.print(); }); });
   $$('[data-share]').forEach(function (b) {
