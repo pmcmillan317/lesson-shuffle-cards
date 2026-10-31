@@ -341,3 +341,32 @@ dialog.cardview button{position:fixed;top:12px;right:12px;width:48px;height:48px
   .page-card .side .dg-svg{max-width:100%}
   .page-card .move p{max-width:40rem}
 }
+/* Class slides */
+.teacher-tag{display:inline-flex;align-items:center;font-size:.85rem;color:var(--muted);padding:.4rem .2rem;width:100%}
+.r-dots button{width:.7rem;height:.7rem;border-radius:50%;background:var(--rule);border:0;padding:0;cursor:pointer}
+.r-dots button.past{background:var(--suit)}
+.r-dots button.on{background:var(--line);transform:scale(1.35)}
+.r-body p{margin:0 0 .7rem}
+.r-show{font:500 clamp(1.4rem,3.6vw,2.3rem)/1.35 var(--body);color:var(--ink);background:var(--suit-soft);border-left:.45rem solid var(--suit);border-radius:0 .6rem .6rem 0;padding:.8rem 1.1rem}
+.r-list,.r-ul{margin:.2rem 0 1rem;padding-left:1.6em}
+.r-list li,.r-ul li{margin:.25rem 0}
+.r-list{font-weight:500}
+.r-lab{font:600 .95rem/1.2 var(--body)!important;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:1rem 0 .3rem!important}
+.r-chips{list-style:none;padding:0;margin:.3rem 0 1rem;display:flex;flex-wrap:wrap;gap:.6rem}
+.r-chips li{font:400 clamp(1.3rem,3.2vw,2rem)/1.2 var(--display);color:var(--title);background:var(--suit-soft);border:2px solid var(--line);border-radius:999px;padding:.4rem 1.1rem;text-transform:lowercase}
+.run.setup .r-title{font-size:clamp(1.5rem,4vw,2.2rem)}
+.r-note{font-size:1rem;color:var(--muted)}
+.r-f{display:block;margin:0 0 1rem;border:0;padding:0;font-size:1rem}
+.r-f>span,.r-f legend{display:block;font-weight:600;margin-bottom:.3rem;padding:0}
+.r-f input,.r-f textarea{width:100%;font:inherit;font-size:1rem;padding:.55rem .7rem;border:1px solid var(--rule);border-radius:.5rem;background:var(--surface);color:var(--ink)}
+.r-tw{overflow-x:auto}
+.r-tab{border-collapse:collapse;width:100%;min-width:34rem}
+.r-tab th{font-size:.8rem;text-align:left;color:var(--muted);font-weight:600;padding:0 .3rem .3rem}
+.r-tab td{padding:.2rem .3rem}
+.r-tab input{width:100%;font:inherit;font-size:.95rem;padding:.45rem .55rem;border:1px solid var(--rule);border-radius:.4rem;background:var(--surface);color:var(--ink)}
+.r-starts{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+.run .r-main{overflow-y:auto}
+.r-foot[hidden]{display:none}
+.r-foot .r-dots button{width:.7rem;height:.7rem;min-height:0;border-radius:50%;background:var(--rule);border:0;padding:0}
+.r-foot .r-dots button.past{background:var(--suit)}
+.r-foot .r-dots button.on{background:var(--line);transform:scale(1.35)}
