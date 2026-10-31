@@ -325,3 +325,19 @@ dialog.cardview button{position:fixed;top:12px;right:12px;width:48px;height:48px
 .dg-frayer div:nth-child(3){border-top-color:#e57373}
 .dg-frayer div:nth-child(4){background:var(--surface);border:2px dashed var(--line);border-top:.35rem solid var(--suit)}
 @media (max-width:380px){.dg-frayer{grid-template-columns:1fr}}
+/* Go deeper accordion */
+.deeper details.more{margin-top:0}
+.deeper details.more>summary{padding:.8rem 0}
+.deeper details.more>summary h2{font:600 1.02rem/1.3 var(--body);text-transform:none;letter-spacing:0;color:var(--ink)}
+.deeper details.more:last-of-type{border-bottom:1px solid var(--rule)}
+.deeper details.more .more-b{padding:0 0 1rem}
+.deeper-sub{margin:-.35rem 0 .3rem;font-size:.9rem}
+/* Desktop: two columns, card info beside the steps */
+@media (min-width:1024px){
+  .page-card .wrap{max-width:72rem}
+  .page-card .layout{display:grid;grid-template-columns:minmax(0,1fr) 24rem;column-gap:3rem;align-items:start}
+  .page-card .layout>*{grid-column:1;min-width:0}
+  .page-card .layout>.side{grid-column:2;grid-row:1 / span 30}
+  .page-card .side .dg-svg{max-width:100%}
+  .page-card .move p{max-width:40rem}
+}

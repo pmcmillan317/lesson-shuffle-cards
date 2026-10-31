@@ -236,7 +236,7 @@
       if (!c) { location.href = '/' + pick.dataset.slug; return; }
       dealt.hidden = false;
       dealt.style.setProperty('--suit', c.color);
-      $('.d-idx', dealt).textContent = c.suitName + ' · ' + c.idx;
+      $('.d-idx', dealt).textContent = c.suitName;
       $('.d-name', dealt).textContent = c.card;
       $('.d-tag', dealt).textContent = c.tagline;
       $('.d-move', dealt).textContent = c.move;
