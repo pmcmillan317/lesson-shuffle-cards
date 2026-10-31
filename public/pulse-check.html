@@ -9,21 +9,20 @@
 <meta property="og:title" content="Pulse Check · Lesson Shuffle">
 <meta property="og:description" content="Pause mid-lesson for a 30-second thumbs or 0–5 finger check, then reteach, regroup or move on.">
 <link rel="icon" href="/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Days+One&family=Rubik:ital,wght@0,400;0,500;0,700;1,400&display=swap">
-<link rel="stylesheet" href="/style.css?v=11">
+<link rel="preload" href="/fonts/days-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/rubik-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v=14">
 <style>:root{--suit:#ffd54f;--line:#d1a21c;--title:#7a5a00;--suit-soft:#fff5d1;--on-suit:#26384a}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--title:#ffd54f;--suit-soft:#3a3420;--line:#e0b42a}}:root[data-theme="dark"]{--title:#ffd54f;--suit-soft:#3a3420;--line:#e0b42a}</style>
 </head>
 <body class="page-card">
 <a class="skip" href="#main">Skip to content</a>
-<div class="band"><div class="wrap"><a href="/" aria-label="All cards"><img src="/logo.webp" alt="Lesson Shuffle: Shuffle, Pick, Grow" width="440" height="300"></a></div></div>
+<header class="site"><div class="wrap site-in"><a class="brand" href="/" aria-label="Lesson Shuffle: all cards"><img src="/logo.webp?v=2" alt="Lesson Shuffle" width="440" height="300"></a><nav class="site-nav" aria-label="Site"><a href="/">All cards</a><a href="/how-to-play">How to play</a></nav></div><div class="stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div></header>
 <header class="card"><div class="wrap">
   <div class="eyebrow"><span class="suit">Assessment &amp; Retrieval</span></div>
   <h1>Pulse Check</h1>
   <p class="tagline">Thumbs up, sideways, down</p>
   <div class="badges"><span class="badge">30 sec</span><span class="badge">No prep</span><span class="badge">Moderate</span></div>
-  <div class="actions"><button type="button" class="btn-main" data-open-run><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Class slides</button><button type="button" class="btn-ghost" data-open-timer><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2h6v2H9zm3 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm1 8.6V9h-2v6.4l4.2 2.5 1-1.7z"/></svg>Timer</button><button type="button" class="btn-ghost" data-print><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h12v5H6zM4 8h16a2 2 0 0 1 2 2v7h-4v5H6v-5H2v-7a2 2 0 0 1 2-2zm4 9v3h8v-3z"/></svg>Print</button><button type="button" class="btn-ghost" data-share><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16a3 3 0 0 0-2.4 1.2l-6.7-3.4a3 3 0 0 0 0-1.6l6.7-3.4A3 3 0 1 0 15 7l-6.7 3.4a3 3 0 1 0 0 3.2l6.7 3.4A3 3 0 1 0 18 16z"/></svg>Share</button></div>
+  <div class="actions"><button type="button" class="btn-main" data-open-run><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Class slides</button><button type="button" class="btn-ghost" data-open-timer aria-label="Timer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2h6v2H9zm3 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm1 8.6V9h-2v6.4l4.2 2.5 1-1.7z"/></svg>Timer</button><button type="button" class="btn-ghost" data-print aria-label="Print"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h12v5H6zM4 8h16a2 2 0 0 1 2 2v7h-4v5H6v-5H2v-7a2 2 0 0 1 2-2zm4 9v3h8v-3z"/></svg>Print</button><button type="button" class="btn-ghost" data-share aria-label="Share"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16a3 3 0 0 0-2.4 1.2l-6.7-3.4a3 3 0 0 0 0-1.6l6.7-3.4A3 3 0 1 0 15 7l-6.7 3.4a3 3 0 1 0 0 3.2l6.7 3.4A3 3 0 1 0 18 16z"/></svg>Share</button></div>
 </div></header>
 <main class="wrap" id="main">
 <nav class="jump" aria-label="On this page"><a href="#steps">Steps</a><a href="#glance">At a glance</a><a href="#picture">Diagram</a><a href="#examples">Examples</a><a href="#deeper">Go deeper</a></nav>
@@ -69,6 +68,6 @@
 <p class="t-hint">Plays a chime at zero. Space bar starts and pauses.</p></div></div>
 <script type="application/json" id="card-data">{"slug": "pulse-check", "card": "Pulse Check", "steps": [{"phase": "", "title": "Ask", "when": "5 seconds", "text": "Or: \u201cShow 0 to 5 fingers.\u201d", "says": ["\u201cThumbs up if you could do this alone, sideways if you\u2019re getting there, down if you\u2019re lost.\u201d"], "sub": "", "secs": 5}, {"phase": "", "title": "Signal", "when": "5 seconds", "text": "", "says": ["\u201cHold it close to your chest so it\u2019s private.\u201d"], "sub": "", "secs": 5}, {"phase": "", "title": "Scan", "when": "10 seconds", "text": "Count roughly: mostly up, mixed or mostly down.", "says": [], "sub": "", "secs": 10}, {"phase": "", "title": "Confirm", "when": "1 minute", "text": "Ask one quick question everyone answers on paper or a whiteboard (see Boards Up!).", "says": [], "sub": "", "secs": 60}, {"phase": "", "title": "Decide", "when": "10 seconds", "text": "Mostly right: move on. Mixed: pull the sideways and downs into a small group while others start. Mostly wrong: reteach.", "says": [], "sub": "", "secs": 10}], "slides": [{"h": "Pulse check", "body": [{"list": ["Thumbs up: I could do this alone", "Sideways: I\u2019m getting there", "Thumbs down: I\u2019m lost"]}, "Hold it close to your chest."], "secs": 0}, {"h": "Prove it", "body": ["@q", "Answer on paper or your board."], "secs": 60}], "fields": [{"key": "q", "label": "Follow-up question (optional)", "kind": "text", "ph": "", "default": ""}]}</script>
 <footer><div class="wrap">Shuffle. Pick. Grow. <a href="/">All cards</a> · <a href="/how-to-play">How to play</a> · <a href="https://lessonshuffle.com">lessonshuffle.com</a></div></footer>
-<script src="/site.js?v=11" defer></script>
+<script src="/site.js?v=14" defer></script>
 </body>
 </html>

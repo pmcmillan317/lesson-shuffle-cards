@@ -9,21 +9,20 @@
 <meta property="og:title" content="Door Greeter · Lesson Shuffle">
 <meta property="og:description" content="Stand at the door and greet each student by name with a quick, positive word before they walk in.">
 <link rel="icon" href="/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Days+One&family=Rubik:ital,wght@0,400;0,500;0,700;1,400&display=swap">
-<link rel="stylesheet" href="/style.css?v=11">
+<link rel="preload" href="/fonts/days-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/rubik-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v=14">
 <style>:root{--suit:#e57373;--line:#d05a6a;--title:#b13b55;--suit-soft:#fbe6e9;--on-suit:#ffffff}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--title:#f19aa9;--suit-soft:#3a2128;--line:#e57373}}:root[data-theme="dark"]{--title:#f19aa9;--suit-soft:#3a2128;--line:#e57373}</style>
 </head>
 <body class="page-card">
 <a class="skip" href="#main">Skip to content</a>
-<div class="band"><div class="wrap"><a href="/" aria-label="All cards"><img src="/logo.webp" alt="Lesson Shuffle: Shuffle, Pick, Grow" width="440" height="300"></a></div></div>
+<header class="site"><div class="wrap site-in"><a class="brand" href="/" aria-label="Lesson Shuffle: all cards"><img src="/logo.webp?v=2" alt="Lesson Shuffle" width="440" height="300"></a><nav class="site-nav" aria-label="Site"><a href="/">All cards</a><a href="/how-to-play">How to play</a></nav></div><div class="stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div></header>
 <header class="card"><div class="wrap">
   <div class="eyebrow"><span class="suit">Classroom Systems &amp; Equity</span></div>
   <h1>Door Greeter</h1>
   <p class="tagline">Own the doorway</p>
   <div class="badges"><span class="badge">Passing time</span><span class="badge">No prep</span><span class="badge">Moderate</span></div>
-  <div class="actions"><button type="button" class="btn-main" data-open-run><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Class slides</button><button type="button" class="btn-ghost" data-open-timer><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2h6v2H9zm3 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm1 8.6V9h-2v6.4l4.2 2.5 1-1.7z"/></svg>Timer</button><button type="button" class="btn-ghost" data-print><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h12v5H6zM4 8h16a2 2 0 0 1 2 2v7h-4v5H6v-5H2v-7a2 2 0 0 1 2-2zm4 9v3h8v-3z"/></svg>Print</button><button type="button" class="btn-ghost" data-share><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16a3 3 0 0 0-2.4 1.2l-6.7-3.4a3 3 0 0 0 0-1.6l6.7-3.4A3 3 0 1 0 15 7l-6.7 3.4a3 3 0 1 0 0 3.2l6.7 3.4A3 3 0 1 0 18 16z"/></svg>Share</button></div>
+  <div class="actions"><button type="button" class="btn-main" data-open-run><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Class slides</button><button type="button" class="btn-ghost" data-open-timer aria-label="Timer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2h6v2H9zm3 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm1 8.6V9h-2v6.4l4.2 2.5 1-1.7z"/></svg>Timer</button><button type="button" class="btn-ghost" data-print aria-label="Print"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h12v5H6zM4 8h16a2 2 0 0 1 2 2v7h-4v5H6v-5H2v-7a2 2 0 0 1 2-2zm4 9v3h8v-3z"/></svg>Print</button><button type="button" class="btn-ghost" data-share aria-label="Share"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16a3 3 0 0 0-2.4 1.2l-6.7-3.4a3 3 0 0 0 0-1.6l6.7-3.4A3 3 0 1 0 15 7l-6.7 3.4a3 3 0 1 0 0 3.2l6.7 3.4A3 3 0 1 0 18 16z"/></svg>Share</button></div>
 </div></header>
 <main class="wrap" id="main">
 <nav class="jump" aria-label="On this page"><a href="#steps">Steps</a><a href="#glance">At a glance</a><a href="#picture">Diagram</a><a href="#examples">Examples</a><a href="#deeper">Go deeper</a></nav>
@@ -68,6 +67,6 @@
 <p class="t-hint">Plays a chime at zero. Space bar starts and pauses.</p></div></div>
 <script type="application/json" id="card-data">{"slug": "door-greeter", "card": "Door Greeter", "steps": [{"phase": "", "title": "Post a warm-up", "when": "Before passing time", "text": "A short task on the board that students start as soon as they sit down.", "says": [], "sub": "", "secs": 0}, {"phase": "", "title": "Stand at the door", "when": "", "text": "One foot in the hall, one in the room, so you can see both.", "says": [], "sub": "", "secs": 0}, {"phase": "", "title": "Greet by name", "when": "About 5 seconds each", "text": "Add a handshake, high five, fist bump or wave.", "says": ["\u201cMorning, Jordan! Good to see you.\u201d"], "sub": "", "secs": 5}, {"phase": "", "title": "Notice and nudge", "when": "", "text": "If a student seems off: <i>\u201cRough morning? Glad you\u2019re here.\u201d<\/i> If someone needs a reminder: <i>\u201cWarm-up\u2019s on the board. Get started.\u201d<\/i>", "says": [], "sub": "", "secs": 0}, {"phase": "", "title": "Close the door and begin on time", "when": "", "text": "", "says": [], "sub": "", "secs": 0}], "slides": [{"h": "Welcome in!", "body": ["Sit down and start right away:", "@warmup"], "secs": 0}], "fields": [{"key": "warmup", "label": "Warm-up task", "kind": "lines", "ph": "Write one thing you remember from yesterday.", "default": ""}]}</script>
 <footer><div class="wrap">Shuffle. Pick. Grow. <a href="/">All cards</a> · <a href="/how-to-play">How to play</a> · <a href="https://lessonshuffle.com">lessonshuffle.com</a></div></footer>
-<script src="/site.js?v=11" defer></script>
+<script src="/site.js?v=14" defer></script>
 </body>
 </html>

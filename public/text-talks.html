@@ -9,21 +9,20 @@
 <meta property="og:title" content="Text Talks · Lesson Shuffle">
 <meta property="og:description" content="Partners read a chunk, pause, and each must say something before moving on: a prediction, a question or a connection.">
 <link rel="icon" href="/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Days+One&family=Rubik:ital,wght@0,400;0,500;0,700;1,400&display=swap">
-<link rel="stylesheet" href="/style.css?v=11">
+<link rel="preload" href="/fonts/days-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/rubik-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v=14">
 <style>:root{--suit:#80c783;--line:#4f9d55;--title:#066633;--suit-soft:#e7f5e8;--on-suit:#26384a}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--title:#8fd39a;--suit-soft:#1d3324;--line:#80c783}}:root[data-theme="dark"]{--title:#8fd39a;--suit-soft:#1d3324;--line:#80c783}</style>
 </head>
 <body class="page-card">
 <a class="skip" href="#main">Skip to content</a>
-<div class="band"><div class="wrap"><a href="/" aria-label="All cards"><img src="/logo.webp" alt="Lesson Shuffle: Shuffle, Pick, Grow" width="440" height="300"></a></div></div>
+<header class="site"><div class="wrap site-in"><a class="brand" href="/" aria-label="Lesson Shuffle: all cards"><img src="/logo.webp?v=2" alt="Lesson Shuffle" width="440" height="300"></a><nav class="site-nav" aria-label="Site"><a href="/">All cards</a><a href="/how-to-play">How to play</a></nav></div><div class="stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div></header>
 <header class="card"><div class="wrap">
   <div class="eyebrow"><span class="suit">Collaboration &amp; Discussion</span></div>
   <h1>Text Talks</h1>
   <p class="tagline">Nobody reads in silence</p>
   <div class="badges"><span class="badge">10–15 min</span><span class="badge">No prep</span><span class="badge">Practice-based</span></div>
-  <div class="actions"><button type="button" class="btn-main" data-open-run><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Class slides</button><button type="button" class="btn-ghost" data-open-timer><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2h6v2H9zm3 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm1 8.6V9h-2v6.4l4.2 2.5 1-1.7z"/></svg>Timer</button><button type="button" class="btn-ghost" data-print><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h12v5H6zM4 8h16a2 2 0 0 1 2 2v7h-4v5H6v-5H2v-7a2 2 0 0 1 2-2zm4 9v3h8v-3z"/></svg>Print</button><button type="button" class="btn-ghost" data-share><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16a3 3 0 0 0-2.4 1.2l-6.7-3.4a3 3 0 0 0 0-1.6l6.7-3.4A3 3 0 1 0 15 7l-6.7 3.4a3 3 0 1 0 0 3.2l6.7 3.4A3 3 0 1 0 18 16z"/></svg>Share</button></div>
+  <div class="actions"><button type="button" class="btn-main" data-open-run><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Class slides</button><button type="button" class="btn-ghost" data-open-timer aria-label="Timer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2h6v2H9zm3 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm1 8.6V9h-2v6.4l4.2 2.5 1-1.7z"/></svg>Timer</button><button type="button" class="btn-ghost" data-print aria-label="Print"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h12v5H6zM4 8h16a2 2 0 0 1 2 2v7h-4v5H6v-5H2v-7a2 2 0 0 1 2-2zm4 9v3h8v-3z"/></svg>Print</button><button type="button" class="btn-ghost" data-share aria-label="Share"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16a3 3 0 0 0-2.4 1.2l-6.7-3.4a3 3 0 0 0 0-1.6l6.7-3.4A3 3 0 1 0 15 7l-6.7 3.4a3 3 0 1 0 0 3.2l6.7 3.4A3 3 0 1 0 18 16z"/></svg>Share</button></div>
 </div></header>
 <main class="wrap" id="main">
 <nav class="jump" aria-label="On this page"><a href="#steps">Steps</a><a href="#glance">At a glance</a><a href="#picture">Diagram</a><a href="#examples">Examples</a><a href="#deeper">Go deeper</a></nav>
@@ -68,6 +67,6 @@
 <p class="t-hint">Plays a chime at zero. Space bar starts and pauses.</p></div></div>
 <script type="application/json" id="card-data">{"slug": "text-talks", "card": "Text Talks", "steps": [{"phase": "", "title": "Post the three options", "when": "30 seconds", "text": "\u201cI predict\u2026\u201d / \u201cWhy did\u2026?\u201d or \u201cHow does\u2026?\u201d / \u201cThis connects to\u2026\u201d", "says": [], "sub": "", "secs": 30}, {"phase": "", "title": "Read chunk 1", "when": "2 minutes", "text": "Partners read silently or take turns aloud.", "says": [], "sub": "", "secs": 120}, {"phase": "", "title": "Say something", "when": "1 minute", "text": "", "says": ["\u201cStop. Each partner says something: a prediction, a why or how question, or a connection to something we learned.\u201d"], "sub": "", "secs": 60}, {"phase": "", "title": "Repeat", "when": "3\u20135 chunks", "text": "", "says": [], "sub": "", "secs": 0}, {"phase": "", "title": "Share out", "when": "2 minutes", "text": "", "says": ["\u201cWhich partner comment helped you most?\u201d"], "sub": "", "secs": 120}], "slides": [{"h": "Say something", "body": [{"list": ["\u201cI predict\u2026\u201d", "\u201cWhy did\u2026?\u201d or \u201cHow does\u2026?\u201d", "\u201cThis connects to\u2026\u201d"]}], "secs": 0}, {"h": "Read", "body": ["Read the next chunk."], "secs": 120}, {"h": "Stop and say something", "body": ["Each partner says one:", {"list": ["\u201cI predict\u2026\u201d", "\u201cWhy did\u2026?\u201d or \u201cHow does\u2026?\u201d", "\u201cThis connects to\u2026\u201d"]}], "secs": 60}, {"h": "Share", "body": ["Which partner comment helped you most?"], "secs": 120, "jump": "Wrap up"}], "fields": []}</script>
 <footer><div class="wrap">Shuffle. Pick. Grow. <a href="/">All cards</a> · <a href="/how-to-play">How to play</a> · <a href="https://lessonshuffle.com">lessonshuffle.com</a></div></footer>
-<script src="/site.js?v=11" defer></script>
+<script src="/site.js?v=14" defer></script>
 </body>
 </html>
