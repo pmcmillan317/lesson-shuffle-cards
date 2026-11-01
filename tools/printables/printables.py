@@ -179,7 +179,9 @@ add('teach-swap-note-catcher', 'Teach Swap Note-Catcher', 'arrows-left-right', [
                          ['8%', '18%', '44%', '30%'], rowh=1.62)],
     ['Print one per student.',
      'Split the topic into four parts, A to D, and give each expert group one part.',
+     'Put students in expert groups, one per part. Experts write three key points and one question.',
      'Check each expert group’s three points before they go home to teach.',
+     'Re-form home groups with one expert from each part. Experts teach, listeners fill in the note catcher.',
      'Notes go away for the short quiz at the end.'],
     ['<b>Expert group:</b> fill in your own row together.',
      '<b>Home group:</b> fill in the other rows as each expert teaches you.',
@@ -303,7 +305,7 @@ add('practice-check', 'Practice Check', 'check-circle', ['explicit-essentials', 
     'For independent practice: check every student’s first problem early on.',
     [nd('Class', 'Date', 'Skill') +
      table(['Student', th('Got it', 'check-circle'), th('Close', 'approximate-equals'), th('Stuck', 'x-circle'), 'Notes'], blank_rows(18, 5), ['30%', '11%', '11%', '11%', '37%'], rowh=.33) +
-     f'<div class="tips">{ic("target", "ic li")}<span><b>Aim for about 4 in 5</b> getting the first one right. Fewer than that? Stop and run another “we do” with the class.</span></div>'],
+     f'<div class="tips">{ic("target", "ic li")}<span><b>Most students should get it right.</b> If many are stuck, stop and work another example with the class.</span></div>'],
     ['Print one per class, or slide it into a clipboard sleeve.',
      'Write names in before class so you can check fast.',
      'Walk the room early in practice. Check each student\'s first problem. Start with students who usually need help.',
