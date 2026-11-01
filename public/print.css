@@ -29,6 +29,7 @@ main{padding:1.2rem .6rem 3rem}
 @media (max-width:640px){.guide{flex-direction:column}.gcards{width:auto;flex-direction:row;flex-wrap:wrap;justify-content:center}}
 .sheet{background:#fff;width:8.5in;max-width:100%;min-height:11in;margin:0 auto 1.2rem;padding:.45in .5in .4in;box-shadow:0 2px 10px rgba(0,0,0,.12);display:flex;flex-direction:column}
 @media (max-width:8.6in){.sheet{min-height:0;padding:1rem}}
+@media screen and (max-width:8.6in){.sheet{overflow-x:auto}}
 .ph{display:flex;align-items:center;gap:.14in;border-bottom:3px solid var(--suit);padding-bottom:.08in;margin-bottom:.1in}
 .pic{width:.56in;height:.56in;border-radius:50%;background:var(--tint);border:2px solid var(--suit);display:grid;place-items:center;flex:none}
 .hi{width:.36in;height:.36in}

@@ -513,7 +513,7 @@ def page(p):
     body = guide + sheets
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{H.escape(p["title"])} · Lesson Shuffle printable</title><meta name="description" content="{H.escape(p["intro"])}">
-<link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/print.css?v=2"></head>
+<link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/print.css?v=3"></head>
 <body style="--suit:{color}">{sprite(body)}<header class="bar"><div class="bar-in"><a href="/printables" class="back">← All printables</a>
 <div class="meta"><b>{H.escape(p["title"])}</b><span>{H.escape(suit)} · For {" · ".join(f'<a href="/{c}">{H.escape(card_title(c))}</a>' for c in cards)}</span></div>
 <button type="button" onclick="window.print()" class="pbtn">{ic("printer", "ic bi2")}Print</button></div></header>
@@ -550,6 +550,7 @@ main{padding:1.2rem .6rem 3rem}
 @media (max-width:640px){.guide{flex-direction:column}.gcards{width:auto;flex-direction:row;flex-wrap:wrap;justify-content:center}}
 .sheet{background:#fff;width:8.5in;max-width:100%;min-height:11in;margin:0 auto 1.2rem;padding:.45in .5in .4in;box-shadow:0 2px 10px rgba(0,0,0,.12);display:flex;flex-direction:column}
 @media (max-width:8.6in){.sheet{min-height:0;padding:1rem}}
+@media screen and (max-width:8.6in){.sheet{overflow-x:auto}}
 .ph{display:flex;align-items:center;gap:.14in;border-bottom:3px solid var(--suit);padding-bottom:.08in;margin-bottom:.1in}
 .pic{width:.56in;height:.56in;border-radius:50%;background:var(--tint);border:2px solid var(--suit);display:grid;place-items:center;flex:none}
 .hi{width:.36in;height:.36in}

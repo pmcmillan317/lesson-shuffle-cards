@@ -1,7 +1,7 @@
 import os,hashlib,json
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'public'))
 pages=['/']+['/'+f[:-5] for f in sorted(os.listdir('.')) if f.endswith('.html') and f not in('index.html','404.html')]+['/print/'+f[:-5] for f in sorted(os.listdir('print')) if f.endswith('.html')]
-assets=['/print.css?v=1','/style.css','/site.js','/logo.webp?v=2','/favicon.png','/manifest.webmanifest','/icon-192.png','/icon-512.png']+['/fonts/'+f for f in sorted(os.listdir('fonts')) if f.endswith('.woff2')]
+assets=['/print.css?v=3','/style.css','/site.js','/logo.webp?v=2','/favicon.png','/manifest.webmanifest','/icon-192.png','/icon-512.png']+['/fonts/'+f for f in sorted(os.listdir('fonts')) if f.endswith('.woff2')]
 imgs=['/cards/'+f for f in sorted(os.listdir('cards'))]
 h=hashlib.sha1()
 for f in sorted(os.listdir('.'))+['cards/'+x for x in sorted(os.listdir('cards'))]+['print/'+x for x in sorted(os.listdir('print'))]:
