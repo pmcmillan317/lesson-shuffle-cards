@@ -82,8 +82,8 @@ def edit(fn, pairs):
     open(fn, 'w').write(s)
 
 ee_old = 'Students try one or two alone while you circulate.'
-ee_new = ('Students try two or three alone. In the first two minutes, check every student’s first one. '
-          'Pull anyone stuck to a side table for a quick reteach while the rest keep going.')
+ee_new = ('Students try two or three alone. Walk the room. Look at each student’s first answer. '
+          'Send anyone stuck to your side table.')
 edit('explicit-essentials.html', [(ee_old, ee_new),
      ('5. Guide student practice; 6. Check for understanding; 7. Obtain a high success rate',
       '5. Guide student practice; 6. Check for understanding; 7. Obtain a high success rate; 9. Require and monitor independent practice')])
