@@ -1,0 +1,1 @@
+{ "private": true, "description": "Builds public/print/*.html. Run: npm install && python3 printables.py && python3 printables_site.py && python3 build_sw.py", "dependencies": { "@phosphor-icons/core": "2.1.1" } }

@@ -474,3 +474,9 @@ footer{margin-top:2rem;background:var(--surface)}
 .plist a:focus-visible{outline:3px solid var(--link);outline-offset:2px}
 .plist b{color:var(--title);font-weight:600}
 .plist span{font-size:.9rem;color:var(--muted)}
+.plist a:has(.pico){flex-direction:row;align-items:center;gap:.8rem}
+.plist .pico{flex:none;display:grid;place-items:center;width:2.6rem;height:2.6rem;border-radius:50%;background:color-mix(in srgb,var(--suit) 18%,transparent);color:var(--title)!important;fill:currentColor!important}
+.plist .pico svg{width:1.6rem;height:1.6rem}
+.plist .ptx{display:flex;flex-direction:column;gap:.15rem}
+.plist .pico,.plist .ptx{font-size:inherit;color:inherit}
+.plist .ptx>span{font-size:.9rem;color:var(--muted)}
