@@ -115,7 +115,8 @@ add('clock-partners', 'Clock Partners', 'clock', ['think-pair-rotate-share'], 'S
     ['Print one per student on regular paper.',
      'Give about 10 minutes, once, for students to fill all 12 hours.',
      'To pair up, call a time: “Find your 3 o’clock partner.”',
-     'Students keep it in a folder. Run a fresh sign-up each semester. Younger students can use only 12, 3, 6 and 9.'],
+     'Students keep it in a folder. Redo it each semester.',
+     'Younger students: use only 12, 3, 6 and 9.'],
     ['Stand up with this sheet and a pencil.',
      'Find a classmate with the same hour open. Write each other’s names on that hour.',
      'Each name goes on your clock only once.',
@@ -155,18 +156,18 @@ add('echo-and-elevate-poster', 'Echo & Elevate Starters', 'arrow-fat-lines-up', 
      '<p>“I’d add…”</p><p>“That makes me think…”</p><p>“I disagree because…”</p></div></div>'],
     ['Print in color if you can. Letter size works; a poster printer is even better.',
      'Post it near the board, where students look when they talk.',
-     'When a chain stalls, point to the poster instead of stepping in.'])
+     'When students stop responding to each other, point to the poster instead of jumping in.'])
 
 bm = (f'<div class="bmk"><div class="bmh">{ic("book-open-text", "ic bi")}<h2 class="h3">Say something</h2></div>'
       '<p class="bms">At the line, stop. Each partner picks one before you read on.</p><ul class="opts">'
       f'<li>{ic("binoculars", "ic oi")}<span><b>Predict</b> “I predict… because…”</span></li>'
       f'<li>{ic("question", "ic oi")}<span><b>Question</b> “Why did…?” “How does…?”</span></li>'
       f'<li>{ic("link", "ic oi")}<span><b>Connect</b> “This connects to…”</span></li></ul>'
-      '<p class="bmf">No repeats in a row. Try a different one each stop.</p></div>')
+      '<p class="bmf">Don’t use the same move two stops in a row.</p></div>')
 add('text-talks-bookmarks', 'Text Talks Bookmarks', 'book-open-text', ['text-talks'], 'Students',
     'Each partner keeps one in the text while reading.',
     [cut([bm] * 4, 2)],
-    ['Print on cardstock and cut into four bookmarks.',
+    ['Print one sheet per four students. Cut into four bookmarks.',
      'Draw a line or stick a note at each stopping point in the text before class.',
      'Give one bookmark per student. Partners read to the line, stop, and each say something.'],
     note='Cut into four.')
@@ -190,8 +191,9 @@ add('feedback-flow-sheet', 'Feedback Flow Comment Sheet', 'chat-circle-dots', ['
      ''.join(f'<div class="round"><div class="rh">{ic("chat-circle-dots", "ic li")}<b>Round {n}</b> Focus question: <i></i></div>{field("I noticed…", 2, sm=True)}{field("Try…", 1, sm=True)}<div class="sig">Reader’s initials <i></i></div></div>' for n in (1, 2, 3)) +
      field('<b>Author:</b> the one comment I’ll use, and what I’ll change', 2, icon='pencil-line')],
     ['Print one per student.',
-     'Post the focus question for each round before students rotate.',
-     'Give 3 to 4 minutes per round. One reader, one comment, then move.',
+     'Each student leaves their draft and sheet at their seat.',
+     'Post the round’s focus question. Readers move to a new draft each round; authors stay put.',
+     'Run three rounds, 3 to 4 minutes each. One reader, one comment, then move.',
      'Save the last few minutes for authors to pick a comment and revise.'],
     ['<b>Reader:</b> read the draft and answer only this round’s focus question.',
      'Write one thing you noticed and one thing to try. Initial it, then move on.',
@@ -238,7 +240,7 @@ add('reading-relay-role-cards', 'Reading Relay Role Cards', 'book-open', ['readi
     [cut([f'<div class="role">{ic(i, "ic rbig")}<h2 class="h3">{r}</h2><p><b>Your job:</b> {j}</p><p class="say"><b>Say:</b> {s}</p></div>' for i, r, j, s in rr], 2)],
     ['Print on cardstock, one set per group of four.',
      'Cut into four cards and keep each set in an envelope.',
-     'Chunk the reading into sections. After each section, students run their role, then pass cards left.',
+     'Chunk the reading into at least four sections. After each section, students do their card’s job. Then everyone passes the card left.',
      'By the fourth section, everyone has played every role.'],
     note='Cut into four.')
 
@@ -250,7 +252,7 @@ add('concept-clash-organizer', 'Concept Clash Organizer', 'lightning', ['concept
     'Think on your own first, then test your comparison with a partner.',
     [cut([cc] * 2, 1)],
     ['Print one per two students and cut in half.',
-     'Post the pair: “How is a ___ like a ___?” Odd pairs work best.',
+     'Pick two concepts from today’s lesson and fill in the blanks. Post it. Unlikely pairs work best.',
      'Students write alone for two minutes, then talk with a partner.',
      'Take three answers. Ask where each comparison breaks.'],
     note='Cut into two half sheets.')
@@ -280,7 +282,7 @@ add('reality-check-planner', 'Reality Check Planner', 'globe', ['reality-check']
     ['Print one per group.',
      'Pose one local problem students can see, like cafeteria waste or hallway traffic.',
      'Give about 10 minutes for the four boxes.',
-     'Each group pitches in one minute. Send the best fix to someone who can act on it.'],
+     'Each group pitches in one minute. Pick the best pitch. Students or you share it with the person who can act (for example, the principal or custodian).'],
     ['Fill the boxes in order, 1 to 4.',
      'Write a pitch you can say in one minute.',
      'Everyone in the group should be ready to give it.'])
@@ -289,7 +291,7 @@ add('mixed-practice-sheet', 'Mixed Practice Sheet', 'shuffle', ['shuffle-practic
     'Mixed problems are tricky because you have to pick the strategy first.',
     [name_date() + table(['#', th('Strategy I’ll use', 'path'), th('My work and answer', 'pencil-line'), th('Partner picked the same?', 'users-three')],
                          [[str(i), '', '', '<span class="yn">Yes · No</span>'] for i in range(1, 11)], ['6%', '26%', '50%', '18%'], rowh=.55) +
-     field('Where we disagreed, and who convinced who', 2, icon='chats')],
+     field('Where we disagreed, and who convinced whom', 2, icon='chats')],
     ['Print one per student.',
      'Write or post 10 problems: mostly today’s, with two or three older ones mixed in.',
      'Circulate and read the strategy column first. A wrong strategy shows up before a wrong answer.'],
@@ -298,15 +300,15 @@ add('mixed-practice-sheet', 'Mixed Practice Sheet', 'shuffle', ['shuffle-practic
      'Compare strategies with a partner, then talk through any differences.'])
 
 add('practice-check', 'Practice Check', 'check-circle', ['explicit-essentials', 'shuffle-practice', 'boards-up'], 'Teacher',
-    'For independent practice: check every student’s first problem in the first two minutes.',
+    'For independent practice: check every student’s first problem early on.',
     [nd('Class', 'Date', 'Skill') +
      table(['Student', th('Got it', 'check-circle'), th('Close', 'approximate-equals'), th('Stuck', 'x-circle'), 'Notes'], blank_rows(18, 5), ['30%', '11%', '11%', '11%', '37%'], rowh=.33) +
      f'<div class="tips">{ic("target", "ic li")}<span><b>Aim for about 4 in 5</b> getting the first one right. Fewer than that? Stop and run another “we do” with the class.</span></div>'],
     ['Print one per class, or slide it into a clipboard sleeve.',
      'Write names in before class so you can check fast.',
-     'In the first two minutes of practice, check every student’s first problem.',
+     'Walk the room early in practice. Check each student\'s first problem. Start with students who usually need help.',
      'Pull anyone marked stuck to a side table for a quick reteach while the rest keep going.'],
-    ['Walk the room in the first two minutes.',
+    ['Walk the room early in practice.',
      'Mark each student’s first problem: got it, close or stuck.',
      'Reteach the stuck group at a side table.'], )
 
@@ -319,8 +321,8 @@ add('brain-busters-sheet', 'Brain Busters Sheet', 'brain', ['brain-busters'], 'S
     'Notes away. Get it out of your head first, then check.',
     [cut([bb] * 2, 1)],
     ['Print one per two students and cut in half.',
-     'After a lesson segment, name the topic and start a 60-second timer.',
-     'Students check their notes and add what they missed in a different color.',
+     'After a lesson segment, name the topic. Students close their notes and write or sketch everything they remember for 60 seconds.',
+     'Students open notes and add what they missed in a different color.',
      'Partners compare and find what both forgot. Reteach that.'],
     note='Cut into two half sheets.')
 
@@ -331,7 +333,7 @@ add('flash-back-sheet', 'Flash Back Sheet', 'clock-counter-clockwise', ['flash-b
     [cut([fbk] * 3, 1)],
     ['Print one sheet per three students and cut into slips.',
      'Post three questions: one from last week, one from last month, one from last unit.',
-     'Students answer from memory, then check and fix in a different color.',
+     'Students answer from memory. Then show the answers (or let them check notes). They fix mistakes in a different color.',
      'Twice a week is plenty.'],
     note='Cut into three slips.')
 
@@ -357,7 +359,7 @@ add('glow-grow-go-slips', 'Glow, Grow, Go Slips', 'plant', ['glow-grow-go'], 'St
     ['Print one sheet per three students and cut into slips.',
      'Post today’s goal so students can copy it.',
      'At the end of a task, students fill one slip about their own work, or a partner’s.',
-     'Collect them and read the Go lines: they tell you what to teach next.'],
+     'Collect them. Skim the Grow lines for what to reteach. Go lines show what students plan to do.'],
     note='Cut into three slips.')
 
 ff = ('<div class="nd"><span>Name <i></i></span></div>' + field('Today we’re learning to…', 1, icon='crosshair') +
@@ -382,7 +384,7 @@ add('meta-matters-reflection', 'Meta Matters Reflection', 'lightbulb', ['meta-ma
     'Use it when a quiz comes back. Be honest: this is for you.',
     [cut([mm] * 2, 1)],
     ['Print one per two students and cut in half.',
-     'Hand it out with the graded quiz, before students look at the score too long.',
+     'Hand it out with the graded quiz. Have students fill it in before they dwell on the score.',
      'Students answer all three, then pick one strategy to try.',
      'Before the next quiz, ask who tried their strategy and how it went.'],
     note='Cut into two half sheets.')
@@ -407,6 +409,7 @@ add('growth-goals-tracker', 'Growth Goals Tracker', 'chart-line-up', ['growth-go
      '<h2>Goal met?</h2>' + field('☐ Yes! My buddy’s next challenge for me', 1) + field('☐ Not yet. What I’ll change next week', 1)],
     ['Print one per student.',
      'Help students write a goal they can count or show. Use the examples on the sheet.',
+     'Pair students as goal buddies. Each buddy asks to see the evidence and initials the row.',
      'Every Friday, buddies check in for two minutes and initial the row.',
      'When a goal is met, the buddy sets the next challenge.'],
     ['Write one skill goal you can count or show.',
