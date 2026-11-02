@@ -217,21 +217,23 @@ add('task-masters-role-chart', 'Task Masters Role Chart', 'identification-badge'
      'Each week, move every name down one role so everyone tries each job.'])
 
 # ===== Instructional Delivery =====
-ww = ('<div class="ww"><div class="fld wd">' + lab('Word', 'text-aa') + lines(1) + '</div>'
-      '<div class="fld">' + lab('What it means, in my words', 'chat-text') + lines(2, 'sm') + '</div>'
-      '<div class="two"><div class="fld">' + lab('Example', 'check-circle') + lines(2, 'sm') + '</div><div class="fld">' + lab('Non-example', 'x-circle') + lines(2, 'sm') + '</div></div>'
-      '<div class="two"><div class="fld">' + lab('My sentence', 'user') + ' <span class="hint">about my life</span>' + lines(2, 'sm') + '</div>'
-      '<div class="bx sk"><div class="bxh">' + lab('Sketch it', 'pencil-simple') + '</div></div></div></div>')
+ww = ('<div class="ww wwfull">'
+      '<div class="bx wordbox"><div class="bxh">' + lab('Word', 'text-aa') + ' <span class="hint">write it big</span></div></div>'
+      '<div class="two"><div class="fld">' + lab('What it means, in my words', 'chat-text') + lines(3) + '</div>'
+      '<div class="fld">' + lab('My sentence', 'user') + ' <span class="hint">about my life</span>' + lines(3) + '</div></div>'
+      '<div class="two"><div class="fld">' + lab('Example', 'check-circle') + lines(2) + '</div>'
+      '<div class="fld">' + lab('Non-example', 'x-circle') + ' <span class="hint">if one fits</span>' + lines(2) + '</div></div>'
+      '<div class="bx sk skbig"><div class="bxh">' + lab('Draw it', 'pencil-simple') + '</div></div></div>')
 add('word-wise-organizer', 'Word Wise Organizer', 'text-aa', ['word-wise'], 'Students',
-    'One box per word. Keep it: the words come back this week.',
-    [name_date() + cut([ww, ww], 1)],
-    ['Print one sheet per two words, per student.',
-     'Say the word, give a kid-friendly meaning, and show one example and one non-example.',
-     'Students write their own sentence about their lives and sketch the word.',
+    'One full page per word. Keep it in a binder: the words come back this week.',
+    [name_date() + ww],
+    ['Print one page per word, per student. Students keep the pages in a binder.',
+     'Say the word, give a kid-friendly meaning, and show an example. Show a non-example when a good one exists; for some words there is no clear opposite, so students can skip that box.',
+     'Students write the word big, put the meaning in their own words, write a sentence about their lives and draw the word.',
      'Revisit each word at least twice this week.'],
-    ['Write the word and what it means in your own words.',
-     'Add an example and a non-example.',
-     'Use it in a sentence about your life, then sketch it.'])
+    ['Write the word big, then what it means in your own words.',
+     'Add an example. Add a non-example if one fits.',
+     'Use the word in a sentence about your life, then draw it.'])
 
 rr = [('notepad', 'Summarizer', 'Say the most important idea of this section in one or two sentences.', '“This part was mostly about…”'),
       ('question', 'Questioner', 'Ask the group one question the text answers, and one it makes you wonder.', '“Who can find where it says…?” “I wonder why…”'),
@@ -658,7 +660,7 @@ table.grid{width:100%;border-collapse:collapse;table-layout:fixed;margin:.06in 0
 .g{border:6px solid var(--g);border-radius:.25in;height:3.3in;display:flex;flex-direction:column;gap:.12in;align-items:center;justify-content:center;text-align:center}
 .g .ic{--du:var(--g);--duo:.7}.gico{width:1.5in;height:1.5in}
 .g span{font:400 28pt/1.1 "Days One",sans-serif;color:var(--navy)}
-.ww{display:flex;flex-direction:column}.ww .ln i{height:.28in}.ww .ln.sm i{height:.25in}
+.ww{display:flex;flex-direction:column}.wwfull{flex:1}.wordbox{min-height:1.5in;margin:.08in 0}.wordbox .bxh{opacity:.9}.wwfull .ln i{height:.32in}.skbig{flex:1;min-height:3.2in;margin:.08in 0 .02in}.ww .ln i{height:.28in}.ww .ln.sm i{height:.25in}
 @page{size:letter;margin:0}
 @media print{body{background:#fff}.bar,.guide{display:none}main{padding:0}
 .sheet{box-shadow:none;margin:0;width:8.5in;height:10.98in;min-height:0;page-break-after:always;break-after:page;overflow:hidden}
