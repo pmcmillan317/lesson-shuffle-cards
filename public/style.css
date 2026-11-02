@@ -418,7 +418,7 @@ html{scroll-padding-top:5rem}
 .cardimg img{border-radius:.8rem;box-shadow:var(--shadow-h)}
 /* home page */
 .page-index .intro h1{font-size:clamp(2.2rem,6vw,3.4rem)}
-@media (min-width:1024px){.page-index .wrap{max-width:68rem}.page-index .intro p{max-width:44rem}}
+@media (min-width:1024px){.page-index .wrap,.page-printables .wrap{max-width:68rem}.page-index .intro p{max-width:44rem}}
 ul.cards{gap:.7rem}
 ul.cards a{border:0;border-left:.35rem solid var(--suit);border-radius:var(--r);box-shadow:var(--shadow);padding:.8rem 1rem;transition:transform .15s ease,box-shadow .15s ease}
 ul.cards a:hover,ul.cards a:focus-visible{transform:translateY(-2px);box-shadow:var(--shadow-h)}

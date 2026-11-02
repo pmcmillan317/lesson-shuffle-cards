@@ -60,6 +60,7 @@ tail = shell[shell.index('</main>'):]
 head = (head.replace('<title>How to Play · Lesson Shuffle</title>', '<title>Printables · Lesson Shuffle</title>')
         .replace('https://cards.lessonshuffle.com/how-to-play', 'https://cards.lessonshuffle.com/printables'))
 desc = 'Free printables for Lesson Shuffle cards: organizers, slips, role cards, posters and teacher trackers.'
+head = head.replace('<body>', '<body class="page-printables">', 1)
 head = re.sub(r'(<meta name="description" content=")[^"]*', r'\g<1>' + desc, head)
 head = re.sub(r'(<meta property="og:title" content=")[^"]*', r'\g<1>Printables · Lesson Shuffle', head)
 head = re.sub(r'(<meta property="og:description" content=")[^"]*', r'\g<1>' + desc, head)
