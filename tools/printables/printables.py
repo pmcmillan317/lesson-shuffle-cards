@@ -126,7 +126,7 @@ def acard(k):
     return (f'<div class="acard"><span class="ix tl">{k}{shape(k, "shp sm")}</span>'
             f'<div class="amid">{shape(k, "shp bg")}<span class="big">{k}</span></div>'
             f'<span class="ix br">{k}{shape(k, "shp sm")}</span></div>')
-add('answer-cards', 'A B C D Answer Cards', 'cards', ['change-my-mind', 'boards-up'], 'Students',
+add('answer-cards', 'A/B/C/D Answer Cards', 'cards', ['change-my-mind', 'boards-up'], 'Students',
     'Private answer cards for multiple-choice votes. Each letter has its own shape, so everyone can read it from across the room.',
     [cut([acard(k) for k in 'ABCD'], 2)],
     ['Print on cardstock, one sheet per student.',
@@ -355,7 +355,7 @@ ggg = ('<div class="nd"><span>Name <i></i></span></div>' + field('Today’s goal
        '<div class="ggg">' + field('Glow', 1, 'one thing that went well, and the goal it meets', sm=True, icon='sun') +
        field('Grow', 1, 'one thing that could be better', sm=True, icon='plant') +
        field('Go', 1, 'one action for next time, starting with a verb', sm=True, icon='arrow-right') + '</div>')
-add('glow-grow-go-slips', 'Glow, Grow, Go Slips', 'plant', ['glow-grow-go'], 'Students',
+add('glow-grow-go-slips', 'Glow Grow Go Slips', 'plant', ['glow-grow-go'], 'Students',
     'Look back at what you made and at today’s goal.',
     [cut([ggg] * 3, 1)],
     ['Print one sheet per three students and cut into slips.',
