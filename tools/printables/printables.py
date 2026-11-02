@@ -502,7 +502,7 @@ def page(p):
         top = ''
         if i == 0:
             top = f'<p class="intro">{p["intro"]}</p>' + (dirs(p['dirs']) if p['dirs'] else '')
-        sheets += (f'<section class="sheet"><header class="ph"><div class="pic">{ic(p["icon"], "ic hi")}</div>'
+        sheets += (f'<section class="sheet" tabindex="0"><header class="ph"><div class="pic">{ic(p["icon"], "ic hi")}</div>'
                    f'<div class="pti"><span class="pk">Lesson Shuffle printable · {H.escape(suit)}</span>'
                    f'<h1>{H.escape(p["title"])}</h1></div>{LOGO}</header>'
                    + top + body +
@@ -518,7 +518,7 @@ def page(p):
     body = guide + sheets
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{H.escape(p["title"])} · Lesson Shuffle printable</title><meta name="description" content="{H.escape(p["intro"])}">
-<link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/print.css?v=3"></head>
+<link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/print.css?v=4"></head>
 <body style="--suit:{color}">{sprite(body)}<header class="bar"><div class="bar-in"><a href="/printables" class="back">← All printables</a>
 <div class="meta"><b>{H.escape(p["title"])}</b><span>{H.escape(suit)} · For {" · ".join(f'<a href="/{c}">{H.escape(card_title(c))}</a>' for c in cards)}</span></div>
 <button type="button" onclick="window.print()" class="pbtn">{ic("printer", "ic bi2")}Print</button></div></header>
