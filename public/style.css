@@ -267,7 +267,7 @@ ul.cards li[hidden]{display:none}
 ul.cards a{display:block;height:100%;padding:.65rem .85rem;background:var(--surface);border:1px solid var(--rule);border-radius:.5rem;text-decoration:none;color:var(--ink)}
 ul.cards a:hover,ul.cards a:focus-visible{border-color:var(--suit)}
 ul.cards .idx{font:500 .75rem/1 var(--body);color:var(--muted);display:flex;justify-content:space-between;margin-bottom:.3rem}
-ul.cards .nm{font-weight:700;color:var(--title);display:block}
+ul.cards .nm{font-weight:700;color:var(--title);display:block;overflow-wrap:anywhere}
 ul.cards .tg{display:block;font-size:.82rem;color:var(--muted);line-height:1.3;margin-top:.15rem}
 .tick{display:none;font-style:normal}
 .is-tried .tick{display:inline}
@@ -415,7 +415,7 @@ dialog.cardview button{position:fixed;top:12px;right:12px;width:48px;height:48px
 .hmenu-list a[aria-current]{color:var(--link);font-weight:600}
 .hmenu-list a[aria-current]::after{content:"";margin-left:auto;width:.6rem;height:.6rem;border-radius:50%;background:var(--link)}
 .hmenu-list .hmenu-sep{height:.5rem}
-@container hdr (max-width:18rem){.hbrand .logo-h{display:none}.hbrand .logo-i{display:block;height:40px;width:40px}}
+@container hdr (max-width:18rem){.hbrand .logo-h{display:none}.hbrand .logo-i{display:block;height:44px;width:44px}}
 @container hdr (max-width:15rem){.hbar{gap:.35rem}.hmenu summary{padding-inline:.6rem}}
 @container hdr (min-width:45rem){.hbar{padding-block:.5rem}.hbrand img{height:48px}.hnav-inline{display:flex;align-items:center;gap:0 1.5rem}.hmenu{display:none}}
 /* The logo's arc as four staggered tabs: they rise from the top edge of the footer. Decorative. */
@@ -439,7 +439,7 @@ dialog.cardview button{position:fixed;top:12px;right:12px;width:48px;height:48px
 @media (min-width:40rem){.site-footer ul{display:grid;gap:0}}
 .site-footer li a{display:inline-flex;align-items:center;min-height:44px;min-width:44px}
 .fbase{position:relative;padding-block:.9rem 1.5rem}
-.fbase::before{content:"";position:absolute;top:0;left:var(--gut);right:var(--gut);border-top:1px solid rgba(255,255,255,.16)}
+.fbase::before{content:"";position:absolute;top:0;left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));border-top:1px solid rgba(255,255,255,.16)}
 .site-footer .made{margin:0;color:rgba(255,255,255,.78)}
 html{scroll-padding-top:5rem}
 /* card page hero */
@@ -477,7 +477,7 @@ ul.cards .nm{font:400 1.05rem/1.25 var(--display);text-transform:uppercase;lette
 @media (max-width:480px){
   .actions [data-print],.actions [data-share]{font-size:0;gap:0;padding:.55rem .8rem}
   .actions [data-print] svg,.actions [data-share] svg{width:1.15rem;height:1.15rem}
-  ul.cards{grid-template-columns:1fr 1fr;gap:.5rem}
+  ul.cards{grid-template-columns:repeat(auto-fill,minmax(min(100%,10rem),1fr));gap:.5rem}
   ul.cards a{padding:.65rem .7rem}
   ul.cards .nm{font-size:.92rem}
   ul.cards .tg{font-size:.78rem}
@@ -511,7 +511,7 @@ ul.cards .nm{font:400 1.05rem/1.25 var(--display);text-transform:uppercase;lette
 .pgrp{margin:1.6rem 0}
 .pgrp h2{display:flex;align-items:center;gap:.55rem}
 .pgrp h2::before{content:"";width:.85rem;height:.85rem;border-radius:50%;background:var(--suit);flex:none}
-.plist{list-style:none;margin:0;padding:0;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr))}
+.plist{list-style:none;margin:0;padding:0;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(min(100%,15rem),1fr))}
 .plist a{display:flex;flex-direction:column;gap:.15rem;height:100%;padding:.8rem 1rem;border:1px solid var(--rule);border-left:5px solid var(--suit);border-radius:var(--r);background:var(--surface);text-decoration:none;color:var(--ink)}
 .plist a:hover{border-color:var(--suit)}
 .plist a:focus-visible{outline:3px solid var(--link);outline-offset:2px}
