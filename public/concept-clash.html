@@ -8,18 +8,45 @@
 <link rel="canonical" href="https://cards.lessonshuffle.com/concept-clash">
 <meta property="og:title" content="Concept Clash · Lesson Shuffle">
 <meta property="og:description" content="Pair today’s concept with an everyday object, such as “How is a simile like a paperclip?” Students think alone, then tell a partner how the two are alike and where the comparison stops working. Take three answers.">
-<link rel="icon" href="/favicon.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#305f82">
-<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/days-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/rubik-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css?v=22">
+<link rel="stylesheet" href="/style.css?v=23">
 <style>:root{--suit:#6ca9d8;--line:#4a8cc0;--title:#305f82;--suit-soft:#e6f1fa;--on-suit:#ffffff}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--title:#8fc3ec;--suit-soft:#1f3242;--line:#6ca9d8}}:root[data-theme="dark"]{--title:#8fc3ec;--suit-soft:#1f3242;--line:#6ca9d8}</style>
 </head>
 <body class="page-card">
 <a class="skip" href="#main">Skip to content</a>
-<header class="site"><div class="wrap site-in"><a class="brand" href="/" aria-label="Lesson Shuffle: all cards"><img src="/logo.webp?v=2" alt="Lesson Shuffle" width="440" height="300"></a><nav class="site-nav" aria-label="Site"><a href="/">All cards</a><a href="/how-to-play">How to play</a><a href="/printables">Printables</a></nav></div><div class="stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div></header>
+<header class="site-header">
+  <div class="wrap hbar">
+    <a class="hbrand" href="/" aria-label="Lesson Shuffle, all cards">
+      <picture class="logo-h"><source media="(prefers-color-scheme: dark)" srcset="/brand/logo-horizontal-dark.svg"><img src="/brand/logo-horizontal-light.svg" alt="" width="920" height="280"></picture>
+      <img class="logo-i" src="/brand/icon.svg" alt="" width="430" height="430">
+    </a>
+    <nav class="hnav" aria-label="Main">
+      <ul class="hnav-inline">
+        <li><a href="/">All cards</a></li>
+        <li><a href="/how-to-play">How to play</a></li>
+        <li><a href="/printables">Printables</a></li>
+      </ul>
+      <details class="hmenu">
+        <summary>Menu</summary>
+        <div class="hmenu-panel">
+          <ul class="hmenu-list wrap" role="list">
+            <li><a href="/">All cards</a></li>
+            <li><a href="/how-to-play">How to play</a></li>
+            <li><a href="/printables">Printables</a></li>
+            <li class="hmenu-sep" aria-hidden="true"></li>
+            <li><a href="https://lessonshuffle.com/">Lesson Shuffle home</a></li>
+          </ul>
+        </div>
+      </details>
+    </nav>
+  </div>
+</header>
 <section class="card-hero" aria-label="Card summary"><div class="wrap">
   <div class="eyebrow"><span class="suit">Instructional Delivery</span></div>
   <h1>Concept Clash</h1>
@@ -71,7 +98,31 @@
 <div class="t-ctrl"><button type="button" class="t-reset">Reset</button><button type="button" class="t-go btn-main" data-autofocus>Start</button><button type="button" class="t-plus">+1 min</button></div>
 <p class="t-hint">Plays a chime at zero. Space bar starts and pauses.</p></div></div>
 <script type="application/json" id="card-data">{"slug": "concept-clash", "card": "Concept Clash", "steps": [{"phase": "", "title": "Model one", "when": "30 seconds", "text": "The first time, think aloud through a pairing yourself: one way they\u2019re alike and where it stops working.", "says": ["\u201cA map is like a recipe: both give steps to get somewhere. It stops working because a recipe has one right order.\u201d"], "sub": "", "secs": 30}, {"phase": "", "title": "Pose the clash", "when": "30 seconds", "text": "Name today\u2019s concept and an everyday object.", "says": ["\u201cHow is a simile like a paperclip? Think on your own first.\u201d"], "sub": "", "secs": 30}, {"phase": "", "title": "Think alone", "when": "30 seconds", "text": "Silent thinking. Students may jot a few words.", "says": [], "sub": "", "secs": 30}, {"phase": "", "title": "Tell a partner", "when": "90 seconds", "text": "Each partner shares how the two are alike and where the comparison stops working.", "says": ["\u201cTell your partner one way they\u2019re alike, and where it stops working. Your partner can agree or push back.\u201d"], "sub": "", "secs": 90}, {"phase": "", "title": "Take three answers", "when": "1 minute", "text": "Call on three students. After each, ask the class: <i>\u201cDoes that comparison hold up? Where does it stop working?\u201d<\/i>", "says": [], "sub": "", "secs": 60}, {"phase": "", "title": "Close", "when": "15 seconds", "text": "", "says": ["\u201cSo [concept] is like [object] because ___. It stops working when ___. Keep that in mind today.\u201d"], "sub": "", "secs": 15}], "slides": [{"h": "How is {concept|today\u2019s idea} like {object|this object}?", "body": ["Think on your own first. Jot a few words."], "secs": 30}, {"h": "Tell your partner", "body": ["One way they\u2019re alike.", "Where the comparison stops working.", "Partner: agree or push back."], "secs": 90}, {"h": "Does it hold up?", "body": ["Where does the comparison work?", "Where does it stop working?"], "secs": 60}, {"h": "Keep it in mind", "body": ["{concept|Today\u2019s idea} is like {object|this object} because ___.", "It stops working when ___."], "secs": 0}], "fields": [{"key": "concept", "label": "Today\u2019s concept", "kind": "text", "ph": "a simile", "default": ""}, {"key": "object", "label": "Everyday object", "kind": "text", "ph": "a paperclip", "default": ""}]}</script>
-<footer><div class="wrap">Shuffle. Pick. Grow. <a href="/">All cards</a> · <a href="/how-to-play">How to play</a> · <a href="/printables">Printables</a> · <a href="https://lessonshuffle.com">lessonshuffle.com</a><br><span class="muted">Works offline after your first visit.</span></div></footer>
+<footer class="site-footer">
+  <div class="suit-tabs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="wrap fgrid">
+    <div class="fbrand">
+      <img class="flogo" src="/brand/logo-horizontal-dark.svg" width="920" height="280" alt="Lesson Shuffle logo" loading="lazy">
+      <p class="ftag">Shuffle. Pick. Grow.</p>
+    </div>
+    <nav aria-label="Cards site">
+      <p class="flabel">Cards</p>
+      <ul>
+        <li><a href="/">All cards</a></li>
+        <li><a href="/how-to-play">How to play</a></li>
+        <li><a href="/printables">Printables</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Lesson Shuffle">
+      <p class="flabel">Lesson Shuffle</p>
+      <ul>
+        <li><a href="https://lessonshuffle.com/">Home</a></li>
+        <li><a href="https://apps.lessonshuffle.com/">Tools<span class="sr"> (opens the tools site)</span></a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap fbase"><p class="made">Made by Patrick McMillan, Lesson Shuffle. Works offline after your first visit.</p></div>
+</footer>
 <script src="/site.js?v=20" defer></script>
 </body>
 </html>

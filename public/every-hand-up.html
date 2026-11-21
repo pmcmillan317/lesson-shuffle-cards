@@ -8,18 +8,45 @@
 <link rel="canonical" href="https://cards.lessonshuffle.com/every-hand-up">
 <meta property="og:title" content="Every Hand Up · Lesson Shuffle">
 <meta property="og:description" content="Take no hands. Ask, give think time, then pull a stick with a student’s name on it and put it back. Anyone could be next, so everyone gets ready.">
-<link rel="icon" href="/favicon.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#305f82">
-<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/days-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/rubik-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css?v=22">
+<link rel="stylesheet" href="/style.css?v=23">
 <style>:root{--suit:#80c783;--line:#4f9d55;--title:#066633;--suit-soft:#e7f5e8;--on-suit:#26384a}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--title:#8fd39a;--suit-soft:#1d3324;--line:#80c783}}:root[data-theme="dark"]{--title:#8fd39a;--suit-soft:#1d3324;--line:#80c783}</style>
 </head>
 <body class="page-card">
 <a class="skip" href="#main">Skip to content</a>
-<header class="site"><div class="wrap site-in"><a class="brand" href="/" aria-label="Lesson Shuffle: all cards"><img src="/logo.webp?v=2" alt="Lesson Shuffle" width="440" height="300"></a><nav class="site-nav" aria-label="Site"><a href="/">All cards</a><a href="/how-to-play">How to play</a><a href="/printables">Printables</a></nav></div><div class="stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div></header>
+<header class="site-header">
+  <div class="wrap hbar">
+    <a class="hbrand" href="/" aria-label="Lesson Shuffle, all cards">
+      <picture class="logo-h"><source media="(prefers-color-scheme: dark)" srcset="/brand/logo-horizontal-dark.svg"><img src="/brand/logo-horizontal-light.svg" alt="" width="920" height="280"></picture>
+      <img class="logo-i" src="/brand/icon.svg" alt="" width="430" height="430">
+    </a>
+    <nav class="hnav" aria-label="Main">
+      <ul class="hnav-inline">
+        <li><a href="/">All cards</a></li>
+        <li><a href="/how-to-play">How to play</a></li>
+        <li><a href="/printables">Printables</a></li>
+      </ul>
+      <details class="hmenu">
+        <summary>Menu</summary>
+        <div class="hmenu-panel">
+          <ul class="hmenu-list wrap" role="list">
+            <li><a href="/">All cards</a></li>
+            <li><a href="/how-to-play">How to play</a></li>
+            <li><a href="/printables">Printables</a></li>
+            <li class="hmenu-sep" aria-hidden="true"></li>
+            <li><a href="https://lessonshuffle.com/">Lesson Shuffle home</a></li>
+          </ul>
+        </div>
+      </details>
+    </nav>
+  </div>
+</header>
 <section class="card-hero" aria-label="Card summary"><div class="wrap">
   <div class="eyebrow"><span class="suit">Collaboration &amp; Discussion</span></div>
   <h1>Every Hand Up</h1>
@@ -72,7 +99,31 @@
 <div class="t-ctrl"><button type="button" class="t-reset">Reset</button><button type="button" class="t-go btn-main" data-autofocus>Start</button><button type="button" class="t-plus">+1 min</button></div>
 <p class="t-hint">Plays a chime at zero. Space bar starts and pauses.</p></div></div>
 <script type="application/json" id="card-data">{"slug": "every-hand-up", "card": "Every Hand Up", "steps": [{"phase": "", "title": "Set the norm", "when": "Once", "text": "", "says": ["\u201cIn here, everyone thinks. I\u2019ll pull names at random, and you can always phone a friend.\u201d"], "sub": "", "secs": 0}, {"phase": "", "title": "Ask the question", "when": "5 seconds", "text": "Take no hands.", "says": [], "sub": "", "secs": 5}, {"phase": "", "title": "Think time", "when": "5\u201310 seconds", "text": "Everyone jots a one-word answer or whispers it to a partner, so every student commits before you pull.", "says": ["\u201cThink. Write your answer down. Everyone have one ready.\u201d"], "sub": "", "secs": 10}, {"phase": "", "title": "Pull a stick", "when": "2 seconds", "text": "Read the name.", "says": [], "sub": "", "secs": 2}, {"phase": "", "title": "Support", "when": "As needed", "text": "If they\u2019re stuck: <i>\u201cWant to phone a friend, or hear it again?\u201d</i> Phone a friend: the student picks a classmate to help. The helper says it, then the first student repeats it in their own words. Come back to them after.", "says": [], "sub": "", "secs": 0}, {"phase": "", "title": "Put the stick back", "when": "2 seconds", "text": "Return it to the cup right away, so anyone can be called again.", "says": [], "sub": "", "secs": 0}], "slides": [{"h": "Everyone thinks", "body": ["Names are pulled at random.", "You can always phone a friend."], "secs": 0}, {"h": "Question", "body": ["@q", "No hands. Write your answer down."], "secs": 10}, {"h": "Ready?", "body": ["Anyone could be next.", "Have your answer ready."], "secs": 0}], "fields": [{"key": "q", "label": "Question", "kind": "text", "ph": "What causes the seasons?", "default": ""}]}</script>
-<footer><div class="wrap">Shuffle. Pick. Grow. <a href="/">All cards</a> · <a href="/how-to-play">How to play</a> · <a href="/printables">Printables</a> · <a href="https://lessonshuffle.com">lessonshuffle.com</a><br><span class="muted">Works offline after your first visit.</span></div></footer>
+<footer class="site-footer">
+  <div class="suit-tabs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="wrap fgrid">
+    <div class="fbrand">
+      <img class="flogo" src="/brand/logo-horizontal-dark.svg" width="920" height="280" alt="Lesson Shuffle logo" loading="lazy">
+      <p class="ftag">Shuffle. Pick. Grow.</p>
+    </div>
+    <nav aria-label="Cards site">
+      <p class="flabel">Cards</p>
+      <ul>
+        <li><a href="/">All cards</a></li>
+        <li><a href="/how-to-play">How to play</a></li>
+        <li><a href="/printables">Printables</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Lesson Shuffle">
+      <p class="flabel">Lesson Shuffle</p>
+      <ul>
+        <li><a href="https://lessonshuffle.com/">Home</a></li>
+        <li><a href="https://apps.lessonshuffle.com/">Tools<span class="sr"> (opens the tools site)</span></a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap fbase"><p class="made">Made by Patrick McMillan, Lesson Shuffle. Works offline after your first visit.</p></div>
+</footer>
 <script src="/site.js?v=20" defer></script>
 </body>
 </html>

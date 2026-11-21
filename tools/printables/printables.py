@@ -488,7 +488,7 @@ add('door-greeting-chart', 'Door Greeting Chart', 'door', ['door-greeter'], 'Cla
      'Stand at the door with a warm-up already on the board.',
      'Each student points to a greeting. Say their name as you do it.'])
 
-LOGO = '<img src="/logo.webp?v=2" alt="Lesson Shuffle" width="440" height="300" class="plogo">'
+LOGO = '<img src="/brand/logo-horizontal-light.svg" alt="Lesson Shuffle" width="920" height="280" class="plogo">'
 PAGE_ICON = {}
 
 def page(p):

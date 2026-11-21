@@ -8,18 +8,45 @@
 <link rel="canonical" href="https://cards.lessonshuffle.com/big-picture">
 <meta property="og:title" content="Big Picture · Lesson Shuffle">
 <meta property="og:description" content="Before you start, draw a line on the board with three points: yesterday, today and later. Students write how today connects to yesterday. You add where it leads next week and beyond. At the end, point to the line and ask what comes next.">
-<link rel="icon" href="/favicon.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#305f82">
-<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/days-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/rubik-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css?v=22">
+<link rel="stylesheet" href="/style.css?v=23">
 <style>:root{--suit:#6ca9d8;--line:#4a8cc0;--title:#305f82;--suit-soft:#e6f1fa;--on-suit:#ffffff}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--title:#8fc3ec;--suit-soft:#1f3242;--line:#6ca9d8}}:root[data-theme="dark"]{--title:#8fc3ec;--suit-soft:#1f3242;--line:#6ca9d8}</style>
 </head>
 <body class="page-card">
 <a class="skip" href="#main">Skip to content</a>
-<header class="site"><div class="wrap site-in"><a class="brand" href="/" aria-label="Lesson Shuffle: all cards"><img src="/logo.webp?v=2" alt="Lesson Shuffle" width="440" height="300"></a><nav class="site-nav" aria-label="Site"><a href="/">All cards</a><a href="/how-to-play">How to play</a><a href="/printables">Printables</a></nav></div><div class="stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div></header>
+<header class="site-header">
+  <div class="wrap hbar">
+    <a class="hbrand" href="/" aria-label="Lesson Shuffle, all cards">
+      <picture class="logo-h"><source media="(prefers-color-scheme: dark)" srcset="/brand/logo-horizontal-dark.svg"><img src="/brand/logo-horizontal-light.svg" alt="" width="920" height="280"></picture>
+      <img class="logo-i" src="/brand/icon.svg" alt="" width="430" height="430">
+    </a>
+    <nav class="hnav" aria-label="Main">
+      <ul class="hnav-inline">
+        <li><a href="/">All cards</a></li>
+        <li><a href="/how-to-play">How to play</a></li>
+        <li><a href="/printables">Printables</a></li>
+      </ul>
+      <details class="hmenu">
+        <summary>Menu</summary>
+        <div class="hmenu-panel">
+          <ul class="hmenu-list wrap" role="list">
+            <li><a href="/">All cards</a></li>
+            <li><a href="/how-to-play">How to play</a></li>
+            <li><a href="/printables">Printables</a></li>
+            <li class="hmenu-sep" aria-hidden="true"></li>
+            <li><a href="https://lessonshuffle.com/">Lesson Shuffle home</a></li>
+          </ul>
+        </div>
+      </details>
+    </nav>
+  </div>
+</header>
 <section class="card-hero" aria-label="Card summary"><div class="wrap">
   <div class="eyebrow"><span class="suit">Instructional Delivery</span></div>
   <h1>Big Picture</h1>
@@ -71,7 +98,31 @@
 <div class="t-ctrl"><button type="button" class="t-reset">Reset</button><button type="button" class="t-go btn-main" data-autofocus>Start</button><button type="button" class="t-plus">+1 min</button></div>
 <p class="t-hint">Plays a chime at zero. Space bar starts and pauses.</p></div></div>
 <script type="application/json" id="card-data">{"slug": "big-picture", "card": "Big Picture", "steps": [{"phase": "", "title": "Draw the line", "when": "20 seconds", "text": "Draw a line on the board with three points. Label them Yesterday, Today and Later.", "says": ["\u201cHere is our line. Yesterday, today and later.\u201d"], "sub": "", "secs": 20}, {"phase": "", "title": "Name today", "when": "20 seconds", "text": "Write today\u2019s topic at the Today point. Write last class\u2019s topic at Yesterday.", "says": ["\u201cToday we are learning ___.\u201d"], "sub": "", "secs": 20}, {"phase": "", "title": "Students write the link", "when": "1 minute", "text": "Students write one sentence on paper or a mini whiteboard. Ask for the specific idea, not \u201cwe learned something.\u201d", "says": ["\u201cWrite one sentence: how does today connect to yesterday?\u201d"], "sub": "", "secs": 60}, {"phase": "", "title": "Add where it leads", "when": "30 seconds", "text": "Take one or two sentences. Then write where this leads at the Later point, next week and beyond.", "says": ["\u201cNext week we will use this to ___. Later this year it helps us with ___.\u201d"], "sub": "", "secs": 30}, {"phase": "", "title": "Teach the lesson", "when": "Your lesson", "text": "Leave the line on the board. Point to it if the lesson drifts.", "says": [], "sub": "", "secs": 0}, {"phase": "", "title": "Point back to the line", "when": "1 minute", "text": "Near the end, stand by the line. Students answer to a neighbor or on paper.", "says": ["\u201cLook at the line. What comes next?\u201d"], "sub": "", "secs": 60}], "slides": [{"h": "Yesterday, today, later", "body": ["Yesterday: {yesterday|what we did last class}", "Today: {today|today\u2019s topic}", "Later: your teacher will add this."], "secs": 0}, {"h": "Connect it", "body": ["Write one sentence: how does today connect to yesterday?"], "secs": 60}, {"h": "Where it leads", "body": ["Later: {later|next week and beyond}"], "secs": 0}, {"h": "What comes next?", "body": ["Look at the line.", "Where could today\u2019s learning lead? Tell a neighbor or write it down."], "secs": 60}], "fields": [{"key": "yesterday", "label": "Yesterday\u2019s topic", "kind": "text", "ph": "parts of a cell", "default": ""}, {"key": "today", "label": "Today\u2019s topic", "kind": "text", "ph": "how cells get energy", "default": ""}, {"key": "later", "label": "Where it leads next week and beyond", "kind": "text", "ph": "how body systems work together", "default": ""}]}</script>
-<footer><div class="wrap">Shuffle. Pick. Grow. <a href="/">All cards</a> · <a href="/how-to-play">How to play</a> · <a href="/printables">Printables</a> · <a href="https://lessonshuffle.com">lessonshuffle.com</a><br><span class="muted">Works offline after your first visit.</span></div></footer>
+<footer class="site-footer">
+  <div class="suit-tabs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="wrap fgrid">
+    <div class="fbrand">
+      <img class="flogo" src="/brand/logo-horizontal-dark.svg" width="920" height="280" alt="Lesson Shuffle logo" loading="lazy">
+      <p class="ftag">Shuffle. Pick. Grow.</p>
+    </div>
+    <nav aria-label="Cards site">
+      <p class="flabel">Cards</p>
+      <ul>
+        <li><a href="/">All cards</a></li>
+        <li><a href="/how-to-play">How to play</a></li>
+        <li><a href="/printables">Printables</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Lesson Shuffle">
+      <p class="flabel">Lesson Shuffle</p>
+      <ul>
+        <li><a href="https://lessonshuffle.com/">Home</a></li>
+        <li><a href="https://apps.lessonshuffle.com/">Tools<span class="sr"> (opens the tools site)</span></a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap fbase"><p class="made">Made by Patrick McMillan, Lesson Shuffle. Works offline after your first visit.</p></div>
+</footer>
 <script src="/site.js?v=20" defer></script>
 </body>
 </html>

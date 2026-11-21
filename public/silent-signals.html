@@ -8,18 +8,45 @@
 <link rel="canonical" href="https://cards.lessonshuffle.com/silent-signals">
 <meta property="og:title" content="Silent Signals · Lesson Shuffle">
 <meta property="og:description" content="What if groups had to work without talking? Give each group of 3–5 one question, one sheet of chart paper and a visible timer for six minutes. Writing, sketches and gestures only. When time is up, groups talk through what they made.">
-<link rel="icon" href="/favicon.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#305f82">
-<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/days-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/rubik-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css?v=22">
+<link rel="stylesheet" href="/style.css?v=23">
 <style>:root{--suit:#80c783;--line:#4f9d55;--title:#066633;--suit-soft:#e7f5e8;--on-suit:#26384a}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--title:#8fd39a;--suit-soft:#1d3324;--line:#80c783}}:root[data-theme="dark"]{--title:#8fd39a;--suit-soft:#1d3324;--line:#80c783}</style>
 </head>
 <body class="page-card">
 <a class="skip" href="#main">Skip to content</a>
-<header class="site"><div class="wrap site-in"><a class="brand" href="/" aria-label="Lesson Shuffle: all cards"><img src="/logo.webp?v=2" alt="Lesson Shuffle" width="440" height="300"></a><nav class="site-nav" aria-label="Site"><a href="/">All cards</a><a href="/how-to-play">How to play</a><a href="/printables">Printables</a></nav></div><div class="stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></div></header>
+<header class="site-header">
+  <div class="wrap hbar">
+    <a class="hbrand" href="/" aria-label="Lesson Shuffle, all cards">
+      <picture class="logo-h"><source media="(prefers-color-scheme: dark)" srcset="/brand/logo-horizontal-dark.svg"><img src="/brand/logo-horizontal-light.svg" alt="" width="920" height="280"></picture>
+      <img class="logo-i" src="/brand/icon.svg" alt="" width="430" height="430">
+    </a>
+    <nav class="hnav" aria-label="Main">
+      <ul class="hnav-inline">
+        <li><a href="/">All cards</a></li>
+        <li><a href="/how-to-play">How to play</a></li>
+        <li><a href="/printables">Printables</a></li>
+      </ul>
+      <details class="hmenu">
+        <summary>Menu</summary>
+        <div class="hmenu-panel">
+          <ul class="hmenu-list wrap" role="list">
+            <li><a href="/">All cards</a></li>
+            <li><a href="/how-to-play">How to play</a></li>
+            <li><a href="/printables">Printables</a></li>
+            <li class="hmenu-sep" aria-hidden="true"></li>
+            <li><a href="https://lessonshuffle.com/">Lesson Shuffle home</a></li>
+          </ul>
+        </div>
+      </details>
+    </nav>
+  </div>
+</header>
 <section class="card-hero" aria-label="Card summary"><div class="wrap">
   <div class="eyebrow"><span class="suit">Collaboration &amp; Discussion</span></div>
   <h1>Silent Signals</h1>
@@ -70,7 +97,31 @@
 <div class="t-ctrl"><button type="button" class="t-reset">Reset</button><button type="button" class="t-go btn-main" data-autofocus>Start</button><button type="button" class="t-plus">+1 min</button></div>
 <p class="t-hint">Plays a chime at zero. Space bar starts and pauses.</p></div></div>
 <script type="application/json" id="card-data">{"slug": "silent-signals", "card": "Silent Signals", "steps": [{"phase": "", "title": "Model if needed", "when": "First time", "text": "Show on a chart sheet before you start. Write a question, add a quick sketch, and point or nod to show an idea you like.", "says": [], "sub": "", "secs": 0}, {"phase": "", "title": "Hand out the sheets", "when": "30 seconds", "text": "Groups of 3\u20135. Give each group one question on one sheet of chart paper. Put a visible timer where every group can see it.", "says": [], "sub": "", "secs": 30}, {"phase": "", "title": "Set the rules", "when": "30 seconds", "text": "", "says": ["\u201cFor the next six minutes, no talking. You can write, sketch and use gestures, like pointing or a thumbs up. You can ask questions on the paper and answer each other on the paper.\u201d"], "sub": "", "secs": 30}, {"phase": "", "title": "Start the timer", "when": "6 minutes", "text": "Everyone writes at the same time. Whispering? Pause the timer and restart when it is silent.", "says": [], "sub": "", "secs": 360}, {"phase": "", "title": "Break the silence", "when": "2 minutes", "text": "When time is up, each group talks through what they made.", "says": ["\u201cTalk! What\u2019s the strongest idea on your paper?\u201d"], "sub": "", "secs": 120}], "slides": [{"h": "Silent signals", "body": [{"list": ["No talking.", "Writing, sketches and gestures only.", "Ask and answer questions on the paper."]}, "@task"], "secs": 0}, {"h": "Go silent", "body": ["@task", "Six minutes. No talking."], "secs": 360}, {"h": "Talk!", "body": ["What\u2019s the strongest idea on your paper?", "Talk it through with your group."], "secs": 120}, {"h": "Nice work", "body": ["Hang your sheet where we can see it."], "secs": 0}], "fields": [{"key": "task", "label": "The question on the paper", "kind": "lines", "ph": "", "default": ""}]}</script>
-<footer><div class="wrap">Shuffle. Pick. Grow. <a href="/">All cards</a> · <a href="/how-to-play">How to play</a> · <a href="/printables">Printables</a> · <a href="https://lessonshuffle.com">lessonshuffle.com</a><br><span class="muted">Works offline after your first visit.</span></div></footer>
+<footer class="site-footer">
+  <div class="suit-tabs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="wrap fgrid">
+    <div class="fbrand">
+      <img class="flogo" src="/brand/logo-horizontal-dark.svg" width="920" height="280" alt="Lesson Shuffle logo" loading="lazy">
+      <p class="ftag">Shuffle. Pick. Grow.</p>
+    </div>
+    <nav aria-label="Cards site">
+      <p class="flabel">Cards</p>
+      <ul>
+        <li><a href="/">All cards</a></li>
+        <li><a href="/how-to-play">How to play</a></li>
+        <li><a href="/printables">Printables</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Lesson Shuffle">
+      <p class="flabel">Lesson Shuffle</p>
+      <ul>
+        <li><a href="https://lessonshuffle.com/">Home</a></li>
+        <li><a href="https://apps.lessonshuffle.com/">Tools<span class="sr"> (opens the tools site)</span></a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap fbase"><p class="made">Made by Patrick McMillan, Lesson Shuffle. Works offline after your first visit.</p></div>
+</footer>
 <script src="/site.js?v=20" defer></script>
 </body>
 </html>
