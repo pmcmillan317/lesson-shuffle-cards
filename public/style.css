@@ -29,7 +29,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(
 a{color:var(--link)}
 button{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--line);outline-offset:2px}
-.skip{position:absolute;left:-999px;top:0;background:var(--surface);padding:.5rem 1rem;z-index:50}
+.skip{position:absolute;left:-999px;top:0;background:var(--surface);padding:.5rem 1rem;z-index:100}
 .skip:focus{left:1rem}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .muted{color:var(--muted)}
@@ -123,8 +123,6 @@ textarea{width:100%;font:inherit;color:var(--ink);background:var(--surface);bord
 .evidence .lvl{display:inline-block;font:500 .78rem/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--head);border:1px solid var(--head);padding:.3rem .55rem;border-radius:.3rem;margin-bottom:.6rem}
 .scholar{font-size:.9rem}
 nav.pager{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-top:1px solid var(--rule);padding-block:1.25rem;font-weight:500}
-footer{border-top:1px solid var(--rule);padding-block:1.5rem 2.5rem;color:var(--muted);font-size:.9rem;text-align:center}
-footer a{font-weight:500}
 
 /* ---------- diagrams ---------- */
 figure.dg{margin:0;padding:1rem;background:var(--surface);border:1px solid var(--rule);border-radius:var(--r)}
@@ -202,7 +200,7 @@ figure.dg figcaption{font-size:.9rem;color:var(--muted);margin-top:.75rem}
 .dg-fade i{flex:1;height:.6rem;border-radius:999px;background:linear-gradient(90deg,var(--title),var(--suit-soft))}
 
 /* ---------- overlays ---------- */
-.ov{position:fixed;inset:0;z-index:40;background:var(--bg);display:flex;flex-direction:column;overflow:auto}
+.ov{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;flex-direction:column;overflow:auto}
 .ov[hidden]{display:none}
 .ov-close{border:0;background:transparent;font-size:2rem;line-height:1;width:48px;height:48px;cursor:pointer;color:var(--ink);border-radius:50%}
 .ov-close:hover{background:var(--suit-soft)}
@@ -254,7 +252,7 @@ figure.dg figcaption{font-size:.9rem;color:var(--muted);margin-top:.75rem}
 .d-idx{font:500 .75rem/1 var(--body);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:0 0 .4rem}
 .d-name{font:400 1.6rem/1.1 var(--display);text-transform:uppercase;color:var(--ink);margin:0 0 .25rem}
 .d-tag{font:400 .9rem/1.2 var(--display);text-transform:uppercase;color:var(--muted)}
-.filters{position:sticky;top:0;z-index:5;background:var(--bg);padding:.75rem 0 .25rem;margin-top:1rem;border-bottom:1px solid var(--rule)}
+.filters{position:sticky;top:65px;z-index:5;background:var(--bg);padding:.75rem 0 .25rem;margin-top:1rem;border-bottom:1px solid var(--rule)}
 .filters input{width:100%;font:inherit;padding:.65rem .9rem;border:1px solid var(--rule);border-radius:999px;background:var(--surface);color:var(--ink);min-height:44px}
 .chips{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem}
 .chip{display:inline-flex;align-items:center;gap:.35rem;border:1px solid var(--rule);background:var(--surface);border-radius:999px;padding:.35rem .75rem;min-height:36px;cursor:pointer;font-size:.88rem}
@@ -269,7 +267,7 @@ ul.cards li[hidden]{display:none}
 ul.cards a{display:block;height:100%;padding:.65rem .85rem;background:var(--surface);border:1px solid var(--rule);border-radius:.5rem;text-decoration:none;color:var(--ink)}
 ul.cards a:hover,ul.cards a:focus-visible{border-color:var(--suit)}
 ul.cards .idx{font:500 .75rem/1 var(--body);color:var(--muted);display:flex;justify-content:space-between;margin-bottom:.3rem}
-ul.cards .nm{font-weight:700;color:var(--title);display:block}
+ul.cards .nm{font-weight:700;color:var(--title);display:block;overflow-wrap:anywhere}
 ul.cards .tg{display:block;font-size:.82rem;color:var(--muted);line-height:1.3;margin-top:.15rem}
 .tick{display:none;font-style:normal}
 .is-tried .tick{display:inline}
@@ -387,14 +385,62 @@ dialog.cardview button{position:fixed;top:12px;right:12px;width:48px;height:48px
 .dg-dec ul:has(>li:nth-child(3):last-child){grid-template-columns:1fr}
 /* ===== Polish pass: header, type, surfaces ===== */
 :root{--shadow:0 1px 2px rgba(20,40,60,.06),0 4px 14px rgba(20,40,60,.06);--shadow-h:0 2px 4px rgba(20,40,60,.08),0 10px 24px rgba(20,40,60,.10);--r:.8rem}
-header.site{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:saturate(1.4) blur(8px);-webkit-backdrop-filter:saturate(1.4) blur(8px)}
-.site-in{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.45rem}
-.brand img{height:3.1rem;width:auto;display:block}
-.site-nav{display:flex;gap:.3rem}
-.site-nav a{font:500 .92rem/1 var(--body);text-decoration:none;color:var(--ink);padding:.55rem .8rem;border-radius:999px}
-.site-nav a:hover{background:var(--suit-soft);color:var(--title)}
-.stripe{display:flex;height:4px}.stripe i{flex:1}
-.stripe i:nth-child(1){background:#6ca9d8}.stripe i:nth-child(2){background:#80c783}.stripe i:nth-child(3){background:#ffd54f}.stripe i:nth-child(4){background:#e57373}
+/* ===== The Lesson Shuffle look (Logo v2), shared with lessonshuffle.com and apps.lessonshuffle.com: header, phone menu, suit tabs, navy footer ===== */
+:root{--navy:#1d3a4f;--blue:#6ca9d8;--green:#80c783;--yellow:#ffd54f;--red:#e57373;--gut:clamp(1rem,4vw,2rem);--ease:cubic-bezier(.2,.8,.2,1);--shadow-lift:0 2px 4px rgba(20,40,60,.08),0 14px 30px rgba(20,40,60,.12)}
+/* The header is a size container, so the phone and desktop layouts switch on its own width in rem: one row at 320px and with enlarged text. */
+.site-header{position:sticky;top:0;z-index:50;container:hdr/inline-size;background:color-mix(in srgb,var(--bg) 92%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.hbar{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:.5rem;padding-block:.3rem}
+.hbrand{display:inline-flex;align-items:center;min-width:0;min-height:44px;text-decoration:none;color:var(--ink)}
+.hbrand picture{flex:none}
+.hbrand img{height:38px;width:auto;flex:none;display:block}
+.hbrand .logo-i{display:none}
+.hnav{flex:none}
+.hnav-inline{display:none;list-style:none;margin:0;padding:0}
+.hnav-inline a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:.3rem .1rem;font:500 1rem/1.2 var(--body);color:var(--ink);text-decoration:none;border-bottom:2px solid transparent}
+.hnav-inline a:hover{border-bottom-color:var(--blue);color:var(--ink)}
+.hnav-inline a[aria-current]{border-bottom-color:var(--link)}
+.hmenu summary{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;min-height:44px;min-width:44px;padding:.3rem .8rem;border:2px solid var(--link);border-radius:999px;color:var(--link);font:600 1rem/1.2 var(--body);cursor:pointer;list-style:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+.hmenu summary::-webkit-details-marker{display:none}
+.hmenu summary::marker{content:""}
+.hmenu summary::before{content:"";flex:none;width:1em;height:.8em;background:linear-gradient(currentColor,currentColor) 0 0/100% 2px no-repeat,linear-gradient(currentColor,currentColor) 0 50%/100% 2px no-repeat,linear-gradient(currentColor,currentColor) 0 100%/100% 2px no-repeat}
+.hmenu[open] summary::before{background:linear-gradient(45deg,transparent calc(50% - 1px),currentColor calc(50% - 1px) calc(50% + 1px),transparent calc(50% + 1px)),linear-gradient(-45deg,transparent calc(50% - 1px),currentColor calc(50% - 1px) calc(50% + 1px),transparent calc(50% + 1px))}
+.hmenu summary:hover,.hmenu[open] summary{background:color-mix(in srgb,var(--link) 12%,transparent)}
+.hmenu-panel{position:absolute;left:0;right:0;top:100%;z-index:60;max-height:calc(100vh - 5rem);max-height:calc(100dvh - 5rem);overflow-y:auto;overscroll-behavior:contain;background:var(--bg);border-bottom:1px solid var(--rule);box-shadow:var(--shadow-lift);padding-block:.5rem .75rem}
+@media (prefers-reduced-motion:no-preference){.hmenu[open] .hmenu-panel{animation:hmenu-in .2s var(--ease)}}
+@keyframes hmenu-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.hmenu-list{list-style:none;margin-inline:auto;padding-block:0}
+.hmenu-list a{display:flex;align-items:center;gap:.75rem;min-height:3rem;padding:.45rem .25rem;color:var(--ink);font:500 1.0625rem/1.3 var(--body);text-decoration:none;border-bottom:1px solid var(--rule)}
+.hmenu-list li:last-child a{border-bottom:0}
+.hmenu-list a:hover{color:var(--link);background:color-mix(in srgb,var(--link) 10%,transparent)}
+.hmenu-list a[aria-current]{color:var(--link);font-weight:600}
+.hmenu-list a[aria-current]::after{content:"";margin-left:auto;width:.6rem;height:.6rem;border-radius:50%;background:var(--link)}
+.hmenu-list .hmenu-sep{height:.5rem}
+@container hdr (max-width:18rem){.hbrand .logo-h{display:none}.hbrand .logo-i{display:block;height:44px;width:44px}}
+@container hdr (max-width:15rem){.hbar{gap:.35rem}.hmenu summary{padding-inline:.6rem}}
+@container hdr (min-width:45rem){.hbar{padding-block:.5rem}.hbrand img{height:48px}.hnav-inline{display:flex;align-items:center;gap:0 1.5rem}.hmenu{display:none}}
+/* The logo's arc as four staggered tabs: they rise from the top edge of the footer. Decorative. */
+.suit-tabs{display:flex;align-items:flex-end;gap:.3rem;padding-inline:.3rem;pointer-events:none}
+.suit-tabs i{flex:1 1 0;height:var(--h,.5rem);background:var(--suit);border-radius:.85rem .85rem 0 0}
+.suit-tabs i:nth-child(1){--suit:var(--blue);--h:.5rem}.suit-tabs i:nth-child(2){--suit:var(--green);--h:.85rem}.suit-tabs i:nth-child(3){--suit:var(--yellow);--h:.85rem}.suit-tabs i:nth-child(4){--suit:var(--red);--h:.5rem}
+@media (min-width:52rem){.suit-tabs{gap:.5rem;padding-inline:.5rem}.suit-tabs i{border-radius:1.25rem 1.25rem 0 0}.suit-tabs i:nth-child(1),.suit-tabs i:nth-child(4){--h:.7rem}.suit-tabs i:nth-child(2),.suit-tabs i:nth-child(3){--h:1.2rem}}
+.site-footer{position:relative;margin-top:3.5rem;background:var(--navy);color:rgba(255,255,255,.86);text-align:left;font-size:1rem}
+.site-footer>.suit-tabs{position:absolute;left:0;right:0;bottom:100%}
+.site-footer a{color:#fff;font-weight:500;text-decoration:none}
+.site-footer a:hover{color:var(--yellow);text-decoration:underline;text-underline-offset:.18em}
+.site-footer :focus-visible{outline-color:var(--yellow)}
+.fgrid{display:grid;gap:1.1rem 3rem;padding-block:1.9rem .75rem}
+@media (min-width:40rem){.fgrid{grid-template-columns:minmax(0,1.4fr) auto auto;padding-block:2.5rem 1rem}}
+.fbrand{display:grid;gap:.7rem;align-content:start}
+.site-footer .flogo{width:min(13.5rem,70%);height:auto}
+@media (min-width:52rem){.site-footer .flogo{width:15rem}}
+.site-footer .ftag{margin:0;font:400 1.15rem/1.2 var(--display);color:#fff}
+.site-footer .flabel{margin:0 0 .3rem;font:600 .8125rem/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.site-footer ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:0 1.5rem}
+@media (min-width:40rem){.site-footer ul{display:grid;gap:0}}
+.site-footer li a{display:inline-flex;align-items:center;min-height:44px;min-width:44px}
+.fbase{position:relative;padding-block:.9rem 1.5rem}
+.fbase::before{content:"";position:absolute;top:0;left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));border-top:1px solid rgba(255,255,255,.16)}
+.site-footer .made{margin:0;color:rgba(255,255,255,.78)}
 html{scroll-padding-top:5rem}
 /* card page hero */
 .card-hero{border-top:0;background:linear-gradient(180deg,var(--suit-soft),var(--bg) 85%);border-bottom:0;padding-block:2rem 1.2rem}
@@ -417,7 +463,7 @@ html{scroll-padding-top:5rem}
 .deeper details.more>summary::after{color:var(--title)}
 .cardimg img{border-radius:.8rem;box-shadow:var(--shadow-h)}
 /* home page */
-.page-index .intro h1{font-size:clamp(2.2rem,6vw,3.4rem)}
+.page-index .deck-hero h1{font-size:clamp(2.2rem,6vw,3.4rem)}
 @media (min-width:1024px){.page-index .wrap,.page-printables .wrap{max-width:68rem}.page-index .intro p{max-width:44rem}}
 ul.cards{gap:.7rem}
 ul.cards a{border:0;border-left:.35rem solid var(--suit);border-radius:var(--r);box-shadow:var(--shadow);padding:.8rem 1rem;transition:transform .15s ease,box-shadow .15s ease}
@@ -426,17 +472,15 @@ ul.cards .nm{font:400 1.05rem/1.25 var(--display);text-transform:uppercase;lette
 .suitblock{border-top:0;padding-top:.5rem}
 .suitblock h2{display:flex;align-items:center;gap:.6rem;font:400 1.25rem/1.2 var(--display);letter-spacing:.02em}
 .suitblock h2::before{content:"";width:1.1rem;height:1.1rem;border-radius:.3rem;background:var(--suit)}
-footer{margin-top:2rem;background:var(--surface)}
-/* print: hide site header */
-@media print{header.site{display:none!important}}
+/* print: hide site header and footer */
+@media print{.site-header,.site-footer{display:none!important}}
 @media (max-width:480px){
   .actions [data-print],.actions [data-share]{font-size:0;gap:0;padding:.55rem .8rem}
   .actions [data-print] svg,.actions [data-share] svg{width:1.15rem;height:1.15rem}
-  ul.cards{grid-template-columns:1fr 1fr;gap:.5rem}
+  ul.cards{grid-template-columns:repeat(auto-fill,minmax(min(100%,10rem),1fr));gap:.5rem}
   ul.cards a{padding:.65rem .7rem}
   ul.cards .nm{font-size:.92rem}
   ul.cards .tg{font-size:.78rem}
-  .brand img{height:2.7rem}
 }
 @media (max-width:480px){
   .actions [data-open-timer]{font-size:0;gap:0;padding:.55rem .8rem}
@@ -467,7 +511,7 @@ footer{margin-top:2rem;background:var(--surface)}
 .pgrp{margin:1.6rem 0}
 .pgrp h2{display:flex;align-items:center;gap:.55rem}
 .pgrp h2::before{content:"";width:.85rem;height:.85rem;border-radius:50%;background:var(--suit);flex:none}
-.plist{list-style:none;margin:0;padding:0;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr))}
+.plist{list-style:none;margin:0;padding:0;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(min(100%,15rem),1fr))}
 .plist a{display:flex;flex-direction:column;gap:.15rem;height:100%;padding:.8rem 1rem;border:1px solid var(--rule);border-left:5px solid var(--suit);border-radius:var(--r);background:var(--surface);text-decoration:none;color:var(--ink)}
 .plist a:hover{border-color:var(--suit)}
 .plist a:focus-visible{outline:3px solid var(--link);outline-offset:2px}
@@ -479,3 +523,21 @@ footer{margin-top:2rem;background:var(--surface)}
 .plist .ptx{display:flex;flex-direction:column;gap:.15rem}
 .plist .pico,.plist .ptx{font-size:inherit;color:inherit}
 .plist .ptx>span{font-size:.9rem;color:var(--muted)}
+
+/* Cards home: the navy hero band of lessonshuffle.com, with the fan of cards and the suit tabs along its bottom edge. */
+.deck-hero{position:relative;overflow:hidden;color:#fff;--focus:var(--yellow);padding-block:clamp(1.75rem,5vw,3.25rem) clamp(2.75rem,6vw,4rem);background:radial-gradient(34rem 24rem at 82% 50%,color-mix(in srgb,#2d5675 70%,var(--navy)),transparent 72%),radial-gradient(26rem 18rem at 0% 0%,rgba(108,169,216,.16),transparent 70%),var(--navy)}
+.deck-hero-in{display:grid;gap:1.5rem;align-items:center}
+@media (min-width:52rem){.deck-hero-in{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}}
+.deck-hero h1{color:#fff;margin:0 0 .9rem}
+.deck-hero p{color:rgba(255,255,255,.92);font-size:clamp(1.05rem,2vw,1.2rem);line-height:1.55;max-width:36rem;margin:0 0 1.25rem}
+.deck-hero .btn-main{background:var(--yellow);border-color:var(--yellow);color:var(--navy)}
+.deck-hero .btn-main:hover{background:#ffe07a;border-color:#ffe07a;filter:none}
+.deck-hero .btn-ghost{color:#fff;border-color:rgba(255,255,255,.75)}
+.deck-hero .btn-ghost:hover{background:rgba(255,255,255,.14);border-color:#fff}
+.deck-hero-art{display:none}
+@media (min-width:52rem){.deck-hero-art{display:block;width:100%;max-width:26rem;height:auto;justify-self:center}}
+.deck-hero>.suit-tabs{position:absolute;left:0;right:0;bottom:0}
+@media print{.deck-hero{background:none;color:#000;padding-block:0 .5rem}.deck-hero h1,.deck-hero p{color:#000}.deck-hero-art,.deck-hero .intro-actions,.deck-hero>.suit-tabs{display:none}}
+/* Below the sticky header (65px; 55px on phones) the sticky search bar keeps its place; on phones it just scrolls with the page. */
+@media (max-width:40rem){.filters{position:static}}
+.deck-hero :focus-visible{outline-color:var(--yellow)}
