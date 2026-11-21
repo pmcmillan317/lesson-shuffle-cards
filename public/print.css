@@ -37,6 +37,7 @@ main{padding:1.2rem .6rem 3rem}
 .pk{font-size:7.5pt;letter-spacing:.08em;text-transform:uppercase;color:#5b6b78}
 .ph h1{margin:0;font:400 19pt/1.1 "Days One",sans-serif;color:var(--navy)}
 .plogo{width:1.6in;height:auto}
+@media screen and (max-width:640px){.plogo{width:1in}}
 .intro{margin:0 0 .08in;font-size:10.5pt;color:#3c4c5a}
 .dirs{display:flex;gap:.12in;align-items:flex-start;background:var(--tint);border-radius:.08in;padding:.07in .12in;margin:0 0 .1in}
 .dh{font:400 9pt "Days One",sans-serif;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;padding-top:.02in;flex:none}

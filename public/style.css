@@ -29,7 +29,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(
 a{color:var(--link)}
 button{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--line);outline-offset:2px}
-.skip{position:absolute;left:-999px;top:0;background:var(--surface);padding:.5rem 1rem;z-index:50}
+.skip{position:absolute;left:-999px;top:0;background:var(--surface);padding:.5rem 1rem;z-index:100}
 .skip:focus{left:1rem}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .muted{color:var(--muted)}
@@ -200,7 +200,7 @@ figure.dg figcaption{font-size:.9rem;color:var(--muted);margin-top:.75rem}
 .dg-fade i{flex:1;height:.6rem;border-radius:999px;background:linear-gradient(90deg,var(--title),var(--suit-soft))}
 
 /* ---------- overlays ---------- */
-.ov{position:fixed;inset:0;z-index:40;background:var(--bg);display:flex;flex-direction:column;overflow:auto}
+.ov{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;flex-direction:column;overflow:auto}
 .ov[hidden]{display:none}
 .ov-close{border:0;background:transparent;font-size:2rem;line-height:1;width:48px;height:48px;cursor:pointer;color:var(--ink);border-radius:50%}
 .ov-close:hover{background:var(--suit-soft)}
@@ -252,7 +252,7 @@ figure.dg figcaption{font-size:.9rem;color:var(--muted);margin-top:.75rem}
 .d-idx{font:500 .75rem/1 var(--body);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:0 0 .4rem}
 .d-name{font:400 1.6rem/1.1 var(--display);text-transform:uppercase;color:var(--ink);margin:0 0 .25rem}
 .d-tag{font:400 .9rem/1.2 var(--display);text-transform:uppercase;color:var(--muted)}
-.filters{position:sticky;top:0;z-index:5;background:var(--bg);padding:.75rem 0 .25rem;margin-top:1rem;border-bottom:1px solid var(--rule)}
+.filters{position:sticky;top:65px;z-index:5;background:var(--bg);padding:.75rem 0 .25rem;margin-top:1rem;border-bottom:1px solid var(--rule)}
 .filters input{width:100%;font:inherit;padding:.65rem .9rem;border:1px solid var(--rule);border-radius:999px;background:var(--surface);color:var(--ink);min-height:44px}
 .chips{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem}
 .chip{display:inline-flex;align-items:center;gap:.35rem;border:1px solid var(--rule);background:var(--surface);border-radius:999px;padding:.35rem .75rem;min-height:36px;cursor:pointer;font-size:.88rem}
@@ -537,4 +537,7 @@ ul.cards .nm{font:400 1.05rem/1.25 var(--display);text-transform:uppercase;lette
 .deck-hero-art{display:none}
 @media (min-width:52rem){.deck-hero-art{display:block;width:100%;max-width:26rem;height:auto;justify-self:center}}
 .deck-hero>.suit-tabs{position:absolute;left:0;right:0;bottom:0}
-@media print{.deck-hero{display:none}}
+@media print{.deck-hero{background:none;color:#000;padding-block:0 .5rem}.deck-hero h1,.deck-hero p{color:#000}.deck-hero-art,.deck-hero .intro-actions,.deck-hero>.suit-tabs{display:none}}
+/* Below the sticky header (65px; 55px on phones) the sticky search bar keeps its place; on phones it just scrolls with the page. */
+@media (max-width:40rem){.filters{position:static}}
+.deck-hero :focus-visible{outline-color:var(--yellow)}

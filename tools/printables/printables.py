@@ -520,7 +520,8 @@ def page(p):
     body = guide + sheets
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{H.escape(p["title"])} · Lesson Shuffle printable</title><meta name="description" content="{H.escape(p["intro"])}">
-<link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/print.css?v=4"></head>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/print.css?v=5"></head>
 <body style="--suit:{color}">{sprite(body)}<header class="bar"><div class="bar-in"><a href="/printables" class="back">← All printables</a>
 <div class="meta"><b>{H.escape(p["title"])}</b><span>{H.escape(suit)} · For {" · ".join(f'<a href="/{c}">{H.escape(card_title(c))}</a>' for c in cards)}</span></div>
 <button type="button" onclick="window.print()" class="pbtn">{ic("printer", "ic bi2")}Print</button></div></header>
@@ -564,7 +565,8 @@ main{padding:1.2rem .6rem 3rem}
 .pti{flex:1;min-width:0}
 .pk{font-size:7.5pt;letter-spacing:.08em;text-transform:uppercase;color:#5b6b78}
 .ph h1{margin:0;font:400 19pt/1.1 "Days One",sans-serif;color:var(--navy)}
-.plogo{width:.9in;height:auto}
+.plogo{width:1.6in;height:auto}
+@media screen and (max-width:640px){.plogo{width:1in}}
 .intro{margin:0 0 .08in;font-size:10.5pt;color:#3c4c5a}
 .dirs{display:flex;gap:.12in;align-items:flex-start;background:var(--tint);border-radius:.08in;padding:.07in .12in;margin:0 0 .1in}
 .dh{font:400 9pt "Days One",sans-serif;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;padding-top:.02in;flex:none}

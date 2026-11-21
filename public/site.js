@@ -449,3 +449,13 @@
   a.addEventListener('click', function (e) { e.preventDefault(); big.src = a.getAttribute('href'); d.showModal(); });
   d.addEventListener('click', function () { d.close(); });
 })();
+/* Phone menu (the <details class="hmenu"> works without JavaScript): close it on Escape, on a tap outside, and when focus leaves it, like lessonshuffle.com. */
+(function () {
+  var menu = document.querySelector('details.hmenu');
+  if (!menu) return;
+  var button = menu.querySelector('summary');
+  menu.addEventListener('click', function (e) { var a = e.target && e.target.closest && e.target.closest('a'); if (a) menu.removeAttribute('open'); });
+  document.addEventListener('keydown', function (e) { if ((e.key === 'Escape' || e.key === 'Esc') && menu.open) { menu.removeAttribute('open'); if (button) button.focus(); } });
+  document.addEventListener('click', function (e) { if (menu.open && !menu.contains(e.target)) menu.removeAttribute('open'); });
+  menu.addEventListener('focusout', function (e) { if (menu.open && e.relatedTarget && !menu.contains(e.relatedTarget)) menu.removeAttribute('open'); });
+})();
