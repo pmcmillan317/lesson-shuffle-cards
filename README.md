@@ -7,3 +7,14 @@ The pages behind every card's QR code at https://cards.lessonshuffle.com.
 - Every push to `main` redeploys automatically.
 - `wrangler.jsonc` is only used by the older Worker copy of the site, which can be deleted.
 - Card URLs must keep their current slugs (e.g. `/concept-clash`), because they are printed in the QR codes.
+
+## The home page (card browser and shuffle)
+
+The home page shows the cards as a fanned hand you flip through (with a Grid view for scanning), and the Shuffle button deals a random card from whatever the search and filters currently show, with an animated deck of card backs.
+
+- The card list is the JSON in `<script id="deck-data">` in `public/index.html`. Everything between `<!-- deck:start -->` and `<!-- deck:end -->` is generated from it, so do not edit that block by hand.
+- To add, remove or reword a card: edit the JSON, put the card face at `public/cards/<slug>.webp`, then run:
+  - `node tools/make-thumbs.cjs` (small faces for the home page go in `public/cards/t/`)
+  - `node tools/build-index.cjs` (rebuilds the page; it also reads each card page for the time label)
+  - `py tools/printables/build_sw.py` (offline file list)
+- The card back is `public/brand/card-back.svg`. The shuffle and fan code is in `public/site.js` (search for "the shuffle table" and "The fanned hand"); styles are the last block of `public/style.css`.
