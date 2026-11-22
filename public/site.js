@@ -359,15 +359,148 @@
     });
   });
 
-  /* ---------- index: search, filters, shuffle, tried marks ---------- */
+  /* ---------- index: search, filters, card browser (fan or grid) and the shuffle table ---------- */
   var deck = $('#deck-data');
   if (deck) {
     var cards = []; try { cards = JSON.parse(deck.textContent); } catch (e) {}
-    var q = $('#q'), count = $('#count'), items = $$('.cards li');
+    var bySlug = {}; cards.forEach(function (c) { bySlug[c.slug] = c; });
+    var q = $('#q'), count = $('#count'), list = $('#cards'), none = $('#none');
+    var items = $$('li[data-slug]', list), dividers = $$('li.divider', list);
     var state = { suit: '', quick: false, noprep: false, strong: false, tried: false };
+    var reduced = function () { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; };
     items.forEach(function (li) { if (store.get('ls-tried-' + li.dataset.slug)) li.classList.add('is-tried'); });
+
+    /* The fanned hand: cards overlap, the one in the middle comes forward, the rest tilt away from it like cards held in a hand. */
+    var fan = (function () {
+      var rail = $('#rail'), knob = $('.rail-knob', rail), pos = $('#pos'), cap = $('#hand-cap');
+      var prev = $('#prev'), next = $('#next');
+      var active = null, hoverLi = null, raf = 0, dragging = false, down = false, railDown = false, dx0 = 0, sl0 = 0;
+      var touchy = window.matchMedia('(hover: none)');
+      function isFan() { return getComputedStyle(list).display === 'flex'; }
+      function shown() { return $$('li:not([hidden])', list); }
+      function isDiv(li) { return li.classList.contains('divider'); }
+      function goTo(li, instant) {
+        if (!li) return;
+        var max = list.scrollWidth - list.clientWidth;
+        var left = Math.max(0, Math.min(max, li.offsetLeft + li.offsetWidth / 2 - list.clientWidth / 2));
+        list.scrollTo({ left: left, behavior: instant || reduced() ? 'auto' : 'smooth' });
+      }
+      function showCap(li) {
+        if (!li || !isFan()) return;
+        cap.style.setProperty('--suit', li.style.getPropertyValue('--suit'));
+        cap.style.setProperty('--title', li.style.getPropertyValue('--title'));
+        cap.classList.remove('sB', 'sG', 'sY', 'sR'); if (li.dataset.suit) cap.classList.add('s' + li.dataset.suit);
+        var s = $('.hc-suit', cap), n = $('.hc-nm', cap), t = $('.hc-tg', cap), m = $('.hc-meta', cap);
+        if (isDiv(li)) {
+          var k = li.dataset.suit, c = cards.filter(function (x) { return x.suit === k; })[0];
+          var have = items.filter(function (x) { return x.dataset.suit === k && !x.hidden; }).length;
+          s.textContent = 'Suit'; n.textContent = c ? c.suitName : ''; t.textContent = have + (have === 1 ? ' card' : ' cards') + ' in this suit.'; m.textContent = 'Flip on to meet them.';
+        } else {
+          var cd = bySlug[li.dataset.slug];
+          s.textContent = cd ? cd.suitName : ''; n.textContent = cd ? cd.card : ''; t.textContent = cd ? cd.tagline : '';
+          m.textContent = [li.dataset.time, li.dataset.noprep === '1' ? 'No prep' : '', li.dataset.ev, li.classList.contains('is-tried') ? 'Tried' : ''].filter(Boolean).join(' · ');
+        }
+      }
+      function update() {
+        raf = 0;
+        if (!isFan()) return;
+        var lis = shown();
+        if (!lis.length) { pos.textContent = ''; return; }
+        var mid = list.scrollLeft + list.clientWidth / 2;
+        var pitch = lis.length > 1 ? Math.abs(lis[1].offsetLeft - lis[0].offsetLeft) : lis[0].offsetWidth;
+        var best = null, bd = 1e9;
+        lis.forEach(function (li) {
+          var d = Math.round((li.offsetLeft + li.offsetWidth / 2 - mid) / pitch * 100) / 100;
+          if (Math.abs(d) < bd) { bd = Math.abs(d); best = li; }
+          if (li._d !== d) { li._d = d; li.style.setProperty('--d', d); li.style.setProperty('--ad', Math.min(Math.abs(d), 7)); }
+        });
+        if (best !== active) {
+          if (active) active.classList.remove('is-active');
+          active = best; active.classList.add('is-active');
+          list.style.setProperty('--glow', active.style.getPropertyValue('--suit'));
+          if (!hoverLi) showCap(active);
+        }
+        var max = list.scrollWidth - list.clientWidth;
+        knob.style.left = (max > 0 ? list.scrollLeft / max * 100 : 0) + '%';
+        var total = lis.filter(function (li) { return !isDiv(li); }).length;
+        var through = lis.slice(0, lis.indexOf(active) + 1).filter(function (li) { return !isDiv(li); }).length + (isDiv(active) ? 1 : 0);
+        pos.textContent = Math.min(through, total) + ' / ' + total;
+        prev.disabled = list.scrollLeft <= 1; next.disabled = list.scrollLeft >= max - 1;
+      }
+      function schedule() { if (!raf) raf = requestAnimationFrame(update); }
+      function step(dir) {
+        var lis = shown(), i = Math.max(0, lis.indexOf(active));
+        goTo(lis[Math.max(0, Math.min(lis.length - 1, i + dir))]);
+      }
+      function refresh(reset) {
+        $$('.is-active', list).forEach(function (li) { li.classList.remove('is-active'); });
+        active = null; hoverLi = null;
+        if (reset) {
+          var first = shown().filter(function (li) { return !isDiv(li); })[0];
+          if (isFan() && first) {
+            /* snapping off while the hand is re-centred, or the browser snaps back to a card that is now hidden */
+            list.classList.add('nosnap'); goTo(first, true);
+            requestAnimationFrame(function () { requestAnimationFrame(function () { list.classList.remove('nosnap'); update(); }); });
+          } else list.scrollLeft = 0;
+        }
+        if (isFan()) update();
+      }
+      list.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', schedule);
+      prev.addEventListener('click', function () { step(-1); });
+      next.addEventListener('click', function () { step(1); });
+      list.addEventListener('keydown', function (e) {
+        if (!isFan() || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+        var li = e.target.closest && e.target.closest('li'); if (!li) return;
+        var links = shown().filter(function (x) { return !isDiv(x); }), i = links.indexOf(li);
+        var n = links[i + (e.key === 'ArrowRight' ? 1 : -1)];
+        if (i >= 0 && n) { e.preventDefault(); $('a', n).focus(); }
+      });
+      list.addEventListener('focusin', function (e) { if (!isFan()) return; var li = e.target.closest && e.target.closest('li'); if (li) goTo(li); });
+      list.addEventListener('pointerover', function (e) {
+        if (e.pointerType !== 'mouse' || down || !isFan()) return;
+        var li = e.target.closest && e.target.closest('li');
+        if (li && li !== hoverLi) { hoverLi = li; showCap(li); }
+      });
+      list.addEventListener('pointerleave', function () { hoverLi = null; showCap(active); });
+      /* On a touch screen the first tap brings a card to the front; tapping the front card opens it. */
+      list.addEventListener('click', function (e) {
+        if (dragging) { e.preventDefault(); e.stopPropagation(); return; }
+        var a = e.target.closest && e.target.closest('a'); if (!a || !isFan()) return;
+        var li = a.parentNode;
+        if (li !== active && touchy.matches) { e.preventDefault(); goTo(li); }
+      }, true);
+      cap.addEventListener('click', function () { var li = hoverLi || active, a = li && $('a', li); if (a) location.href = a.href; });
+      /* Drag with a mouse to flip through, like a trackpad swipe. */
+      list.addEventListener('pointerdown', function (e) {
+        if (!isFan() || e.pointerType !== 'mouse' || e.button !== 0) return;
+        down = true; dragging = false; dx0 = e.clientX; sl0 = list.scrollLeft;
+      });
+      window.addEventListener('pointermove', function (e) {
+        if (!down) return;
+        var dx = e.clientX - dx0;
+        if (!dragging && Math.abs(dx) > 5) { dragging = true; list.classList.add('dragging'); }
+        if (dragging) list.scrollLeft = sl0 - dx;
+      });
+      function dragEnd() {
+        if (!down) return; down = false;
+        if (dragging) { list.classList.remove('dragging'); update(); goTo(active); setTimeout(function () { dragging = false; }, 0); }
+      }
+      window.addEventListener('pointerup', dragEnd); window.addEventListener('pointercancel', dragEnd);
+      /* Drag the dot along the bar to scrub through the whole deck. */
+      function railTo(e) {
+        var r = rail.getBoundingClientRect(), f = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+        list.scrollLeft = f * (list.scrollWidth - list.clientWidth);
+      }
+      rail.addEventListener('pointerdown', function (e) { railDown = true; rail.setPointerCapture(e.pointerId); list.classList.add('dragging'); railTo(e); });
+      rail.addEventListener('pointermove', function (e) { if (railDown) railTo(e); });
+      function railEnd() { if (!railDown) return; railDown = false; list.classList.remove('dragging'); update(); goTo(active); }
+      rail.addEventListener('pointerup', railEnd); rail.addEventListener('pointercancel', railEnd);
+      return { refresh: refresh, isFan: isFan };
+    })();
+
     function apply() {
-      var term = (q.value || '').trim().toLowerCase(), shown = 0;
+      var term = (q.value || '').trim().toLowerCase(), shown = 0, perSuit = {};
       items.forEach(function (li) {
         var d = li.dataset, ok = true;
         if (state.suit && d.suit !== state.suit) ok = false;
@@ -376,38 +509,168 @@
         if (state.strong && d.ev !== 'Strong') ok = false;
         if (state.tried && !li.classList.contains('is-tried')) ok = false;
         if (term && d.search.indexOf(term) < 0) ok = false;
-        li.hidden = !ok; if (ok) shown++;
+        li.hidden = !ok; if (ok) { shown++; perSuit[d.suit] = (perSuit[d.suit] || 0) + 1; }
       });
-      $$('.suitblock').forEach(function (s) { s.hidden = !$$('li', s).some(function (li) { return !li.hidden; }); });
+      dividers.forEach(function (dv) { var n = perSuit[dv.dataset.suit] || 0; dv.hidden = !n; $('.dv-n', dv).textContent = n + (n === 1 ? ' card' : ' cards'); });
+      $$('.rail-seg').forEach(function (seg) { var n = perSuit[seg.dataset.suit] || 0; seg.hidden = !n; seg.style.flexGrow = n + 1; });
       count.textContent = shown + (shown === 1 ? ' card' : ' cards');
+      none.hidden = shown > 0;
+      fan.refresh(true);
     }
     q.addEventListener('input', apply);
-    $$('[data-suit]').forEach(function (b) {
+    $$('[data-suit]', $('.filters')).forEach(function (b) {
       b.addEventListener('click', function () {
         state.suit = state.suit === b.dataset.suit ? '' : b.dataset.suit;
-        $$('[data-suit]').forEach(function (x) { x.setAttribute('aria-pressed', x.dataset.suit === state.suit); });
+        $$('.chip[data-suit]').forEach(function (x) { x.setAttribute('aria-pressed', x.dataset.suit === state.suit); });
         apply();
       });
     });
     $$('[data-toggle]').forEach(function (b) {
       b.addEventListener('click', function () { var k = b.dataset.toggle; state[k] = !state[k]; b.setAttribute('aria-pressed', state[k]); apply(); });
     });
-    $('#shuffle').addEventListener('click', function () {
+
+    /* Fan or grid */
+    function setView(v) {
+      document.body.dataset.view = v;
+      $$('.viewsw [data-view]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.view === v); });
+      store.set('ls-view', v);
+      fan.refresh(true);
+    }
+    $$('.viewsw [data-view]').forEach(function (b) { b.addEventListener('click', function () { setView(b.dataset.view); }); });
+    if (store.get('ls-view') === 'grid') setView('grid');
+    else if (!fan.isFan()) $('.viewsw').hidden = true;   /* an old browser that cannot show the fan keeps the grid */
+
+    /* The shuffle table: a deck of card backs is cut, riffled twice, squared up, and the top card is turned over. */
+    var table = $('#table'), stage = $('#stage'), dealtBox = $('#dealt'), shuffleBtn = $('#shuffle');
+    var againBtn = $('#again'), awayBtn = $('#put-away');
+    var N = 14, H = N / 2, STEP = 1.5, order = [], z = [], els = [], busy = false, skipping = false, running = [], wakeups = [], lastSlug = '';
+    for (var oi = 0; oi < H; oi++) order.push(oi, H + oi);    /* the order the cards drop in a riffle: one from each half in turn */
+    order.forEach(function (id, k) { z[id] = k; });
+    var TOP = order[N - 1];
+    function tf(x, y, r, s) { return 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) rotate(' + r.toFixed(1) + 'deg) scale(' + s + ')'; }
+    function pose(p, s) { return tf(p[0], p[1], p[2], s || 1); }
+    function stackAt(id) { return [0, -z[id] * STEP, 0]; }
+    function pileAt(id, w) { var left = id < H, rank = left ? id : id - H; return [(left ? -1 : 1) * w * 0.62, -rank * STEP * 1.2, left ? -5 : 5]; }
+    function dims() { return { w: els[0].offsetWidth, h: els[0].offsetHeight }; }
+    function finalScale() { var d = dims(); return Math.max(1, Math.min(stage.clientHeight * 0.92 / d.h, stage.clientWidth * 0.86 / d.w, 2.4)); }
+    function wait(ms) { return new Promise(function (res) { var t = setTimeout(res, ms); wakeups.push(function () { clearTimeout(t); res(); }); }); }
+    function anim(node, frames, opts) {
+      var a = node.animate(frames, opts); running.push(a);
+      if (skipping) a.finish();
+      return a.finished.catch(function () {});
+    }
+    function skipNow() { skipping = true; wakeups.splice(0).forEach(function (f) { f(); }); running.forEach(function (a) { try { a.finish(); } catch (e) {} }); }
+    function build(c) {
+      stage.innerHTML = ''; els = [];
+      for (var i = 0; i < N; i++) {
+        var sc = el('div', { 'class': 'sc' + (i === TOP ? ' top' : '') });
+        sc.style.zIndex = z[i];
+        sc.innerHTML = i === TOP
+          ? '<div class="flip"><div class="back"></div><div class="front"><img alt="" width="682" height="1170" src="/cards/' + c.slug + '.webp"></div></div>'
+          : '<div class="back"></div>';
+        sc.style.transform = pose(stackAt(i));
+        stage.appendChild(sc); els.push(sc);
+      }
+      stage.classList.remove('is-dealt');
+    }
+    /* One card's whole shuffle: split into two piles, riffle together, split again, riffle again. All times in ms. */
+    function shuffleFrames(id, w, h) {
+      var k = z[id], side = id < H ? -1 : 1, S = stackAt(id), P = pileAt(id, w), jit = ((id * 37) % 7 - 3) * 0.5;
+      var M = [side * w * 0.3, P[1] - h * 0.1 - 6, side * 2.5 + jit];
+      var out = 'cubic-bezier(.2,.7,.3,1)', inn = 'cubic-bezier(.5,0,.9,.6)', TT = 1800;
+      var s1 = 360 + k * 30, s2 = 1330 + k * 20;
+      return [
+        [0, S, out], [300, P, 'linear'],
+        [s1, P, out], [s1 + 120, M, inn], [s1 + 240, S, 'linear'],
+        [1040, S, out], [1280, P, 'linear'],
+        [s2, P, out], [s2 + 100, M, inn], [s2 + 200, S, 'linear'],
+        [TT, S, 'linear']
+      ].map(function (f) { return { offset: f[0] / TT, transform: pose(f[1]), easing: f[2] }; });
+    }
+    function dealTo() {
+      var topEl = els[TOP], flip = $('.flip', topEl), d = dims(), S = stackAt(TOP), sc = finalScale();
+      var jobs = [
+        anim(topEl, [{ transform: pose(S) }, { transform: tf(0, S[1] - d.h * 0.16, -3, 1.1), offset: 0.38 }, { transform: tf(0, 0, 0, sc) }], { duration: 820, easing: 'cubic-bezier(.3,.7,.25,1)', fill: 'forwards' }),
+        anim(flip, [{ transform: 'perspective(900px) rotateY(0deg)' }, { transform: 'perspective(900px) rotateY(180deg)' }], { duration: 640, delay: 140, easing: 'cubic-bezier(.3,.5,.3,1)', fill: 'forwards' })
+      ];
+      els.forEach(function (e, i) { if (i !== TOP) jobs.push(anim(e, [{ opacity: 1 }, { opacity: 0 }], { duration: 450, delay: 300, fill: 'forwards' })); });
+      return Promise.all(jobs);
+    }
+    function settle() {    /* freeze the dealt look in plain styles */
+      if (!els.length) return;
+      running.forEach(function (a) { try { a.cancel(); } catch (e) {} }); running = [];
+      var topEl = els[TOP];
+      topEl.style.transform = tf(0, 0, 0, finalScale());
+      $('.flip', topEl).style.transform = 'perspective(900px) rotateY(180deg)';
+      els.forEach(function (e, i) { if (i !== TOP) e.style.opacity = 0; });
+      stage.classList.add('is-dealt');
+    }
+    function putBack() {   /* turn the dealt card face down and slide it back into the deck */
+      if (!stage.classList.contains('is-dealt') || !els.length || reduced()) return Promise.resolve();
+      stage.classList.remove('is-dealt');
+      var topEl = els[TOP], flip = $('.flip', topEl), jobs = [
+        anim(topEl, [{ transform: tf(0, 0, 0, finalScale()) }, { transform: pose(stackAt(TOP)) }], { duration: 480, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' }),
+        anim(flip, [{ transform: 'perspective(900px) rotateY(180deg)' }, { transform: 'perspective(900px) rotateY(0deg)' }], { duration: 440, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' })
+      ];
+      els.forEach(function (e, i) { if (i !== TOP) jobs.push(anim(e, [{ opacity: 0 }, { opacity: 1 }], { duration: 400, fill: 'forwards' })); });
+      return Promise.all(jobs);
+    }
+    function pickCard() {
       var pool = items.filter(function (li) { return !li.hidden; });
       if (!pool.length) pool = items;
-      var pick = pool[Math.floor(Math.random() * pool.length)];
-      var dealt = $('#dealt'), c = cards.filter(function (x) { return x.slug === pick.dataset.slug; })[0];
-      if (!c) { location.href = '/' + pick.dataset.slug; return; }
-      dealt.hidden = false;
-      dealt.style.setProperty('--suit', c.color);
-      $('.d-idx', dealt).textContent = c.suitName;
-      $('.d-name', dealt).textContent = c.card;
-      $('.d-tag', dealt).textContent = c.tagline;
-      $('.d-move', dealt).textContent = c.move;
-      $('.d-go', dealt).href = '/' + c.slug;
-      dealt.classList.remove('flip'); void dealt.offsetWidth; dealt.classList.add('flip');
-      $('.d-go', dealt).focus({ preventScroll: true });
-      dealt.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
+      if (pool.length > 1) pool = pool.filter(function (li) { return li.dataset.slug !== lastSlug; });
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+    function fillInfo(c) {
+      dealtBox.style.setProperty('--suit', c.color);
+      $('.d-idx', dealtBox).textContent = c.suitName;
+      $('.d-name', dealtBox).textContent = c.card;
+      $('.d-tag', dealtBox).textContent = c.tagline;
+      $('.d-move', dealtBox).textContent = c.move;
+      $('.d-go', dealtBox).href = '/' + c.slug;
+      var meta = $('.d-meta', dealtBox); meta.innerHTML = '';
+      [c.time, c.noprep ? 'No prep' : '', c.ev].filter(Boolean).forEach(function (m) { var s = el('span'); s.textContent = m; meta.appendChild(s); });
+    }
+    function shuffle() {
+      if (busy) { skipNow(); return; }
+      var li = pickCard(), c = bySlug[li.dataset.slug];
+      if (!c) { location.href = '/' + li.dataset.slug; return; }
+      busy = true; skipping = false; lastSlug = c.slug;
+      var wasOpen = !table.hidden;
+      table.hidden = false;
+      dealtBox.classList.remove('is-ready');
+      fillInfo(c);
+      var r = table.getBoundingClientRect();
+      if (!wasOpen || r.top < 40 || r.top > innerHeight * 0.5) table.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' });
+      var img = new Image(); img.src = '/cards/' + c.slug + '.webp';
+      putBack().then(function () {
+        build(c);
+        if (reduced()) { settle(); return; }
+        return wait(wasOpen ? 80 : 420).then(function () {
+          var d = dims();
+          return Promise.all(els.map(function (e, id) { return anim(e, shuffleFrames(id, d.w, d.h), { duration: 1800, fill: 'forwards' }); }));
+        }).then(function () { return dealTo(); }).then(settle);
+      }).catch(function () { try { settle(); } catch (e) {} }).then(function () {
+        dealtBox.classList.add('is-ready');
+        busy = false; running = [];
+        if (document.activeElement === shuffleBtn) $('.d-go', dealtBox).focus({ preventScroll: true });
+      });
+    }
+    function putAway() {
+      if (busy) skipNow();
+      table.hidden = true; stage.innerHTML = ''; els = []; stage.classList.remove('is-dealt'); dealtBox.classList.remove('is-ready');
+      shuffleBtn.focus();
+    }
+    shuffleBtn.addEventListener('click', shuffle);
+    againBtn.addEventListener('click', shuffle);
+    awayBtn.addEventListener('click', putAway);
+    table.addEventListener('keydown', function (e) { if (e.key === 'Escape') putAway(); });
+    stage.addEventListener('click', function () {
+      if (busy) skipNow();
+      else if (stage.classList.contains('is-dealt') && lastSlug) location.href = '/' + lastSlug;
+    });
+    window.addEventListener('resize', function () {
+      if (stage.classList.contains('is-dealt') && els.length) els[TOP].style.transform = tf(0, 0, 0, finalScale());
     });
     apply();
   }
