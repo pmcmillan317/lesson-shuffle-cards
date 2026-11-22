@@ -568,8 +568,9 @@ body.page-index{overflow-x:clip}
 /* The cards, as a grid (also what you get without JavaScript) */
 ul.cards{position:relative;list-style:none;margin:1.25rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,10.5rem),1fr));gap:1.2rem .9rem}
 ul.cards li[hidden]{display:none!important}
-ul.cards li.divider{grid-column:1/-1;display:flex;align-items:baseline;flex-wrap:wrap;gap:.2rem .8rem;margin-top:.9rem;padding-bottom:.45rem;border-bottom:3px solid var(--suit)}
+ul.cards li.divider{grid-column:1/-1;margin-top:.9rem}
 ul.cards li.divider:first-child{margin-top:0}
+ul.cards li.divider .dv{display:flex;align-items:baseline;flex-wrap:wrap;gap:.2rem .8rem;padding-bottom:.45rem;border-bottom:3px solid var(--suit)}
 ul.cards li.divider h2{margin:0;display:flex;align-items:center;gap:.6rem;color:var(--title);font:400 1.25rem/1.2 var(--display);letter-spacing:.02em}
 ul.cards li.divider h2::before{content:"";width:1.1rem;height:1.1rem;border-radius:.3rem;background:var(--suit);flex:none}
 ul.cards li.divider .dv-n{margin:0;font-size:.85rem;color:var(--muted)}
@@ -590,7 +591,7 @@ ul.cards li a:focus-visible .face{box-shadow:0 3px 6px rgba(20,40,60,.14),0 16px
 .deckbar,.hand-cap{display:none}
 
 /* The cards, as a fanned hand you flip through. Needs scripting; otherwise the grid above stays. */
-@property --glow{syntax:"<color>";inherits:true;initial-value:rgba(0,0,0,0)}
+@property --glow{syntax:"<color>";inherits:false;initial-value:rgba(0,0,0,0)}
 @media (scripting:enabled){
   body:not([data-view=grid]) .browse{--cw:clamp(9.25rem,21vw,14rem);--ov:.5}
   body:not([data-view=grid]) .deckbar{display:flex;align-items:center;gap:.8rem;margin-top:1rem}
@@ -602,25 +603,28 @@ ul.cards li a:focus-visible .face{box-shadow:0 3px 6px rgba(20,40,60,.14),0 16px
   body:not([data-view=grid]) .rail-seg[hidden]{display:none}
   body:not([data-view=grid]) .rail-knob{position:absolute;top:50%;left:0;width:1.3rem;height:1.3rem;margin:-.65rem 0 0 -.65rem;border-radius:50%;background:#fff;border:3px solid var(--navy);box-shadow:var(--shadow-h);pointer-events:none}
   body:not([data-view=grid]) .pos{flex:none;min-width:4.3rem;margin:0;text-align:right;font:500 .85rem/1 var(--body);color:var(--muted);font-variant-numeric:tabular-nums}
-  body:not([data-view=grid]) ul.cards{display:flex;gap:0;margin:.25rem calc(50% - 50vw) 0;padding:calc(var(--cw)*.28 + .75rem) 0 2.75rem;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;cursor:grab;transition:--glow .5s;background:radial-gradient(42rem 17rem at 50% 52%,color-mix(in srgb,var(--glow) 24%,transparent),transparent 72%)}
+  body:not([data-view=grid]) ul.cards{isolation:isolate;display:flex;gap:0;margin:.25rem calc(50% - 50vw) 0;padding:calc(var(--cw)*.28 + .75rem) 0 2.75rem;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;cursor:grab;transition:--glow .5s;background:radial-gradient(42rem 17rem at 50% 52%,color-mix(in srgb,var(--glow) 24%,transparent),transparent 72%)}
   body:not([data-view=grid]) ul.cards::-webkit-scrollbar{display:none}
   body:not([data-view=grid]) ul.cards::before{content:"";flex:0 0 calc(50% - var(--cw)/2 + var(--cw)*var(--ov))}
   body:not([data-view=grid]) ul.cards::after{content:"";flex:0 0 calc(50% - var(--cw)/2)}
   body:not([data-view=grid]) ul.cards.dragging,body:not([data-view=grid]) ul.cards.nosnap{scroll-snap-type:none}
   body:not([data-view=grid]) ul.cards.dragging{cursor:grabbing}
-  body:not([data-view=grid]) ul.cards li{position:relative;flex:0 0 var(--cw);margin-left:calc(var(--cw)*var(--ov)*-1);scroll-snap-align:center;transform-origin:50% 135%;transform:rotate(calc(clamp(-6,var(--d,0),6)*4.2deg)) scale(calc(1 + max(0,1 - var(--ad,0))*.12))}
-  body:not([data-view=grid]) ul.cards li.is-active{z-index:20}
-  body:not([data-view=grid]) ul.cards li:focus-within{z-index:30}
-  body:not([data-view=grid]) ul.cards li a:focus-visible{transform:translateY(-.9rem) scale(1.03)}
+  body:not([data-view=grid]) ul.cards li{position:relative;flex:0 0 var(--cw);margin-left:calc(var(--cw)*var(--ov)*-1);scroll-snap-align:center}
+  body:not([data-view=grid]) ul.cards li>a,body:not([data-view=grid]) ul.cards li>.dv{transform-origin:50% 135%}
+  body:not([data-view=grid]) ul.cards.jsfan li>a,body:not([data-view=grid]) ul.cards.jsfan li>.dv{will-change:transform}
+  body:not([data-view=grid]) ul.cards li:focus-within>a,body:not([data-view=grid]) ul.cards li:focus-within>.dv{z-index:2000!important}
+  body:not([data-view=grid]) ul.cards li a:hover,body:not([data-view=grid]) ul.cards li a:focus-visible{transform:none}
+  body:not([data-view=grid]) ul.cards li a .face{transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+  body:not([data-view=grid]) ul.cards li a:focus-visible{outline:0}
+  body:not([data-view=grid]) ul.cards li a:focus-visible .face{transform:translateY(-.9rem) scale(1.03);outline:3px solid var(--line);outline-offset:3px}
   @media (hover:hover){
-    body:not([data-view=grid]) ul.cards li:hover{z-index:30}
-    body:not([data-view=grid]) ul.cards li a:hover{transform:translateY(-.9rem) scale(1.03)}
+    body:not([data-view=grid]) ul.cards li:hover>a,body:not([data-view=grid]) ul.cards li:hover>.dv{z-index:2000!important}
+    body:not([data-view=grid]) ul.cards li a:hover .face{transform:translateY(-.9rem) scale(1.03)}
   }
   body:not([data-view=grid]) .cap{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;padding:0}
-  body:not([data-view=grid]) ul.cards li.divider{display:block;aspect-ratio:440/755;margin-top:0;padding:0;border:0;border-radius:6.6% / 3.85%;background:var(--suit);box-shadow:var(--shadow-h);color:var(--navy)}
-  body:not([data-view=grid]) ul.cards li.divider:first-child{margin-top:0}
-  body:not([data-view=grid]) ul.cards li.divider::before{content:"";position:absolute;inset:.6rem;border:3px solid rgba(255,255,255,.8);border-radius:5% / 2.7%;pointer-events:none}
-  body:not([data-view=grid]) ul.cards li.divider{container-type:inline-size}
+  body:not([data-view=grid]) ul.cards li.divider{aspect-ratio:440/755;margin-top:0;container-type:inline-size}
+  body:not([data-view=grid]) ul.cards li.divider .dv{position:absolute;inset:0;display:block;padding:0;border:0;border-radius:6.6% / 3.85%;background:var(--suit);box-shadow:var(--shadow-h);color:var(--navy)}
+  body:not([data-view=grid]) ul.cards li.divider .dv::before{content:"";position:absolute;inset:.6rem;border:3px solid rgba(255,255,255,.8);border-radius:5% / 2.7%;pointer-events:none}
   body:not([data-view=grid]) ul.cards li.divider h2{position:absolute;left:1.35rem;right:1.35rem;top:50%;transform:translateY(-50%);display:block;text-align:center;color:var(--navy);font:400 1.05rem/1.2 var(--display);font-size:8.6cqw;text-transform:uppercase;overflow-wrap:anywhere}
   body:not([data-view=grid]) ul.cards li.divider h2::before{display:none}
   body:not([data-view=grid]) ul.cards li.divider .dv-n{position:absolute;left:0;right:0;bottom:1.6rem;text-align:center;color:var(--navy);font:500 .85rem/1 var(--body)}
@@ -630,6 +634,20 @@ ul.cards li a:focus-visible .face{box-shadow:0 3px 6px rgba(20,40,60,.14),0 16px
   .hc-nm{margin:0;font:400 clamp(1.6rem,4.2vw,2.3rem)/1.1 var(--display);text-transform:uppercase;color:var(--title);text-wrap:balance}
   .hc-tg{margin:.35rem 0 0;font-size:1.08rem;line-height:1.4;color:var(--ink)}
   .hc-meta{margin:.35rem 0 0;font-size:.9rem;color:var(--muted)}
+}
+/* Where the browser can tie an animation to scrolling, the fan is drawn by it (on the compositor, so dragging stays smooth). Each card tilts about 4 degrees per card-slot away from the middle, the card in the middle is enlarged, and cards nearer the middle sit on top on both sides. */
+@keyframes fan-card{
+  0%{transform:rotate(25.2deg) scale(1);z-index:1}
+  41.667%{transform:rotate(4.2deg) scale(1);z-index:50}
+  50%{transform:rotate(0deg) scale(1.12);z-index:60}
+  58.333%{transform:rotate(-4.2deg) scale(1);z-index:50}
+  100%{transform:rotate(-25.2deg) scale(1);z-index:1}
+}
+@supports (animation-timeline:view()){
+  @media (scripting:enabled){
+    body:not([data-view=grid]) ul.cards{--pitch:calc(var(--cw)*(1 - var(--ov)))}
+    body:not([data-view=grid]) ul.cards li>a,body:not([data-view=grid]) ul.cards li>.dv{animation:fan-card linear both;animation-timeline:view(inline);animation-range:cover calc(50% - 6*var(--pitch)) cover calc(50% + 6*var(--pitch))}
+  }
 }
 @media (scripting:none){.viewsw{display:none}}
 @media (max-width:40rem){
@@ -648,9 +666,11 @@ ul.cards li a:focus-visible .face{box-shadow:0 3px 6px rgba(20,40,60,.14),0 16px
   .table,.deckbar,.hand-cap,.viewsw,.filters{display:none!important}
   ul.cards{display:grid!important;grid-template-columns:repeat(3,1fr);gap:.3rem .6rem;margin:0!important;padding:0!important;overflow:visible!important;background:none!important}
   ul.cards::before,ul.cards::after{display:none!important}
-  ul.cards li{margin:0!important;transform:none!important;break-inside:avoid}
-  ul.cards li.divider{display:block!important;aspect-ratio:auto!important;background:none!important;box-shadow:none!important;color:#000}
-  ul.cards li.divider::before{display:none}
+  ul.cards li{margin:0!important;break-inside:avoid}
+  ul.cards li>a,ul.cards li>.dv{transform:none!important;animation:none!important}
+  ul.cards li.divider{display:block!important;aspect-ratio:auto!important}
+  ul.cards li.divider .dv{position:static!important;background:none!important;box-shadow:none!important;color:#000}
+  ul.cards li.divider .dv::before{display:none}
   ul.cards li.divider h2{position:static!important;transform:none!important;text-align:left!important;color:#000!important;font-size:1.1rem!important}
   ul.cards li.divider .dv-n{position:static!important;text-align:left!important;color:#000!important}
   .face{display:none}

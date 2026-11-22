@@ -52,7 +52,7 @@ function li(c) {
 const groups = SUITS.map((s) => ({ s, cards: deck.filter((c) => c.suit === s.k) }));
 const list = groups.map(({ s, cards }) => {
   const first = cards[0];
-  return `<li class="divider s${s.k}" style="${suitStyle(s.k)}" data-suit="${s.k}"><h2>${esc(first.suitName)}</h2><p class="dv-n">${cards.length} cards</p></li>` + cards.map(li).join("");
+  return `<li class="divider s${s.k}" style="${suitStyle(s.k)}" data-suit="${s.k}"><div class="dv"><h2>${esc(first.suitName)}</h2><p class="dv-n">${cards.length} cards</p></div></li>` + cards.map(li).join("");
 }).join("\n");
 
 const chips = groups.map(({ s, cards }) => `<button type="button" class="chip" data-suit="${s.k}" aria-pressed="false" style="--suit:${cards[0].color}"><i></i>${esc(cards[0].suitName)}</button>`).join("");
