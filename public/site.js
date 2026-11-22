@@ -376,9 +376,22 @@
       var prev = $('#prev'), next = $('#next');
       var active = null, hoverLi = null, raf = 0, dragging = false, down = false, railDown = false, dx0 = 0, sl0 = 0;
       var touchy = window.matchMedia('(hover: none)');
+      /* Browsers that can tie an animation to scrolling (Chrome, Edge, Safari 26) tilt and raise the cards from CSS, on the compositor,
+         so dragging stays smooth. Other browsers (and people who ask for reduced motion) get the same look from this script. */
+      var native = !!(window.CSS && CSS.supports && CSS.supports('animation-timeline: view()')) && !reduced();
+      var fanOn = false, lis = [], centers = [], pitch = 1, vw = 0, maxScroll = 0, lastKnob = -1, lastPos = '', lastPrev = null, lastNext = null;
+      if (!native) list.classList.add('jsfan');
       function isFan() { return getComputedStyle(list).display === 'flex'; }
       function shown() { return $$('li:not([hidden])', list); }
       function isDiv(li) { return li.classList.contains('divider'); }
+      /* Read every card's position once (not on every scroll frame), so scrolling never forces a layout. */
+      function measure() {
+        fanOn = isFan(); lis = shown(); centers = [];
+        if (!fanOn || !lis.length) return;
+        centers = lis.map(function (li) { return li.offsetLeft + li.offsetWidth / 2; });
+        pitch = lis.length > 1 ? Math.abs(centers[1] - centers[0]) : lis[0].offsetWidth;
+        vw = list.clientWidth; maxScroll = Math.max(0, list.scrollWidth - vw);
+      }
       function goTo(li, instant) {
         if (!li) return;
         var max = list.scrollWidth - list.clientWidth;
@@ -386,7 +399,7 @@
         list.scrollTo({ left: left, behavior: instant || reduced() ? 'auto' : 'smooth' });
       }
       function showCap(li) {
-        if (!li || !isFan()) return;
+        if (!li || !fanOn) return;
         cap.style.setProperty('--suit', li.style.getPropertyValue('--suit'));
         cap.style.setProperty('--title', li.style.getPropertyValue('--title'));
         cap.classList.remove('sB', 'sG', 'sY', 'sR'); if (li.dataset.suit) cap.classList.add('s' + li.dataset.suit);
@@ -401,64 +414,86 @@
           m.textContent = [li.dataset.time, li.dataset.noprep === '1' ? 'No prep' : '', li.dataset.ev, li.classList.contains('is-tried') ? 'Tried' : ''].filter(Boolean).join(' · ');
         }
       }
+      /* Script fallback: tilt, enlarge and stack one card from its distance d (in card slots) from the middle. Cards nearer the middle sit on top, on both sides. */
+      function place(li, d) {
+        var fx = li.firstElementChild; if (!fx) return;
+        if (d > 7.5) d = 7.5; else if (d < -7.5) d = -7.5;
+        var ad = d < 0 ? -d : d, r = (d > 6 ? 6 : d < -6 ? -6 : d) * 4.2, s = 1 + (ad < 1 ? 1 - ad : 0) * 0.12;
+        var key = r.toFixed(2) + '|' + s.toFixed(3);
+        if (li._k === key) return;
+        li._k = key;
+        fx.style.transform = 'rotate(' + r.toFixed(2) + 'deg) scale(' + s.toFixed(3) + ')';
+        fx.style.zIndex = 1000 - Math.round(ad * 20);
+      }
+      /* Load the cards next to the front one ahead of time, so flicking through never shows empty faces. */
+      function warm(idx) {
+        for (var k = Math.max(0, idx - 8); k < Math.min(lis.length, idx + 9); k++) { var im = lis[k].querySelector('img'); if (im && im.loading === 'lazy') im.loading = 'eager'; }
+      }
       function update() {
         raf = 0;
-        if (!isFan()) return;
-        var lis = shown();
-        if (!lis.length) { pos.textContent = ''; return; }
-        var mid = list.scrollLeft + list.clientWidth / 2;
-        var pitch = lis.length > 1 ? Math.abs(lis[1].offsetLeft - lis[0].offsetLeft) : lis[0].offsetWidth;
-        var best = null, bd = 1e9;
-        lis.forEach(function (li) {
-          var d = Math.round((li.offsetLeft + li.offsetWidth / 2 - mid) / pitch * 100) / 100;
-          if (Math.abs(d) < bd) { bd = Math.abs(d); best = li; }
-          if (li._d !== d) { li._d = d; li.style.setProperty('--d', d); li.style.setProperty('--ad', Math.min(Math.abs(d), 7)); }
-        });
-        if (best !== active) {
+        if (!fanOn || !lis.length) return;
+        var sl = list.scrollLeft, mid = sl + vw / 2, best = 0, bd = 1e9, i, d, ad;
+        for (i = 0; i < lis.length; i++) {
+          d = (centers[i] - mid) / pitch; ad = d < 0 ? -d : d;
+          if (ad < bd) { bd = ad; best = i; }
+          if (!native) place(lis[i], d);
+        }
+        var cur = lis[best];
+        if (cur !== active) {
           if (active) active.classList.remove('is-active');
-          active = best; active.classList.add('is-active');
+          active = cur; active.classList.add('is-active');
           list.style.setProperty('--glow', active.style.getPropertyValue('--suit'));
           if (!hoverLi) showCap(active);
+          warm(best);
+          var total = 0, through = 0;
+          for (i = 0; i < lis.length; i++) { if (!isDiv(lis[i])) { total++; if (i <= best) through++; } }
+          if (isDiv(active)) through++;
+          lastPos = Math.min(through, total) + ' / ' + total; pos.textContent = lastPos;
         }
-        var max = list.scrollWidth - list.clientWidth;
-        knob.style.left = (max > 0 ? list.scrollLeft / max * 100 : 0) + '%';
-        var total = lis.filter(function (li) { return !isDiv(li); }).length;
-        var through = lis.slice(0, lis.indexOf(active) + 1).filter(function (li) { return !isDiv(li); }).length + (isDiv(active) ? 1 : 0);
-        pos.textContent = Math.min(through, total) + ' / ' + total;
-        prev.disabled = list.scrollLeft <= 1; next.disabled = list.scrollLeft >= max - 1;
+        var k = maxScroll > 0 ? Math.round(sl / maxScroll * 1000) / 10 : 0;
+        if (k !== lastKnob) { lastKnob = k; knob.style.left = k + '%'; }
+        var pd = sl <= 1, nd = sl >= maxScroll - 1;
+        if (pd !== lastPrev) { lastPrev = pd; prev.disabled = pd; }
+        if (nd !== lastNext) { lastNext = nd; next.disabled = nd; }
       }
       function schedule() { if (!raf) raf = requestAnimationFrame(update); }
       function step(dir) {
-        var lis = shown(), i = Math.max(0, lis.indexOf(active));
+        var i = Math.max(0, lis.indexOf(active));
         goTo(lis[Math.max(0, Math.min(lis.length - 1, i + dir))]);
       }
       function refresh(reset) {
         $$('.is-active', list).forEach(function (li) { li.classList.remove('is-active'); });
-        active = null; hoverLi = null;
+        active = null; hoverLi = null; lastPos = ''; lastKnob = -1; lastPrev = lastNext = null;
+        measure();
+        if (!lis.length) pos.textContent = '';
+        if (!fanOn) {
+          $$('li', list).forEach(function (li) { var fx = li.firstElementChild; if (fx) { fx.style.transform = ''; fx.style.zIndex = ''; } li._k = null; });
+          return;
+        }
         if (reset) {
-          var first = shown().filter(function (li) { return !isDiv(li); })[0];
-          if (isFan() && first) {
+          var first = lis.filter(function (li) { return !isDiv(li); })[0];
+          if (first) {
             /* snapping off while the hand is re-centred, or the browser snaps back to a card that is now hidden */
             list.classList.add('nosnap'); goTo(first, true);
-            requestAnimationFrame(function () { requestAnimationFrame(function () { list.classList.remove('nosnap'); update(); }); });
-          } else list.scrollLeft = 0;
+            requestAnimationFrame(function () { requestAnimationFrame(function () { list.classList.remove('nosnap'); measure(); update(); }); });
+          }
         }
-        if (isFan()) update();
+        update();
       }
       list.addEventListener('scroll', schedule, { passive: true });
-      window.addEventListener('resize', schedule);
+      window.addEventListener('resize', function () { measure(); schedule(); });
       prev.addEventListener('click', function () { step(-1); });
       next.addEventListener('click', function () { step(1); });
       list.addEventListener('keydown', function (e) {
-        if (!isFan() || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+        if (!fanOn || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
         var li = e.target.closest && e.target.closest('li'); if (!li) return;
-        var links = shown().filter(function (x) { return !isDiv(x); }), i = links.indexOf(li);
+        var links = lis.filter(function (x) { return !isDiv(x); }), i = links.indexOf(li);
         var n = links[i + (e.key === 'ArrowRight' ? 1 : -1)];
         if (i >= 0 && n) { e.preventDefault(); $('a', n).focus(); }
       });
-      list.addEventListener('focusin', function (e) { if (!isFan()) return; var li = e.target.closest && e.target.closest('li'); if (li) goTo(li); });
+      list.addEventListener('focusin', function (e) { if (!fanOn) return; var li = e.target.closest && e.target.closest('li'); if (li) goTo(li); });
       list.addEventListener('pointerover', function (e) {
-        if (e.pointerType !== 'mouse' || down || !isFan()) return;
+        if (e.pointerType !== 'mouse' || down || !fanOn) return;
         var li = e.target.closest && e.target.closest('li');
         if (li && li !== hoverLi) { hoverLi = li; showCap(li); }
       });
@@ -466,14 +501,14 @@
       /* On a touch screen the first tap brings a card to the front; tapping the front card opens it. */
       list.addEventListener('click', function (e) {
         if (dragging) { e.preventDefault(); e.stopPropagation(); return; }
-        var a = e.target.closest && e.target.closest('a'); if (!a || !isFan()) return;
+        var a = e.target.closest && e.target.closest('a'); if (!a || !fanOn) return;
         var li = a.parentNode;
         if (li !== active && touchy.matches) { e.preventDefault(); goTo(li); }
       }, true);
       cap.addEventListener('click', function () { var li = hoverLi || active, a = li && $('a', li); if (a) location.href = a.href; });
       /* Drag with a mouse to flip through, like a trackpad swipe. */
       list.addEventListener('pointerdown', function (e) {
-        if (!isFan() || e.pointerType !== 'mouse' || e.button !== 0) return;
+        if (!fanOn || e.pointerType !== 'mouse' || e.button !== 0) return;
         down = true; dragging = false; dx0 = e.clientX; sl0 = list.scrollLeft;
       });
       window.addEventListener('pointermove', function (e) {
