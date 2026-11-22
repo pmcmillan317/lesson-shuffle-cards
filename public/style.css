@@ -625,7 +625,8 @@ ul.cards li a:focus-visible .face{box-shadow:0 3px 6px rgba(20,40,60,.14),0 16px
   body:not([data-view=grid]) ul.cards li.divider{aspect-ratio:440/755;margin-top:0;container-type:inline-size}
   body:not([data-view=grid]) ul.cards li.divider .dv{position:absolute;inset:0;display:block;padding:0;border:0;border-radius:6.6% / 3.85%;background:var(--suit);box-shadow:var(--shadow-h);color:var(--navy)}
   body:not([data-view=grid]) ul.cards li.divider .dv::before{content:"";position:absolute;inset:.6rem;border:3px solid rgba(255,255,255,.8);border-radius:5% / 2.7%;pointer-events:none}
-  body:not([data-view=grid]) ul.cards li.divider h2{position:absolute;left:1.35rem;right:1.35rem;top:50%;transform:translateY(-50%);display:block;text-align:center;color:var(--navy);font:400 1.05rem/1.2 var(--display);font-size:8.6cqw;text-transform:uppercase;overflow-wrap:anywhere}
+  /* Days One capitals: the longest word (COLLABORATION) is about 10.3 times the font size wide, so the size is the width of the title box divided by 10.8. Words are never split. */
+  body:not([data-view=grid]) ul.cards li.divider h2{position:absolute;left:1.1rem;right:1.1rem;top:50%;transform:translateY(-50%);display:block;text-align:center;color:var(--navy);font:400 .7rem/1.2 var(--display);font-size:calc((100cqw - 2.2rem)/10.8);text-transform:uppercase;overflow-wrap:normal;hyphens:none;text-wrap:balance}
   body:not([data-view=grid]) ul.cards li.divider h2::before{display:none}
   body:not([data-view=grid]) ul.cards li.divider .dv-n{position:absolute;left:0;right:0;bottom:1.6rem;text-align:center;color:var(--navy);font:500 .85rem/1 var(--body)}
   body:not([data-view=grid]) .hand-cap{display:block;min-height:7.6rem;margin-top:-1.4rem;padding-inline:1rem;text-align:center;cursor:pointer}
