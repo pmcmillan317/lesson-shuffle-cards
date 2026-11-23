@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ten-Po Shift block timer · Lesson Shuffle</title>
+<meta name="description" content="A lesson block timer for the Ten-Po Shift card: plan four blocks, run a countdown with a whole-lesson progress bar, and shift between blocks. Your plan stays on this device.">
+<link rel="canonical" href="https://cards.lessonshuffle.com/tools/ten-po-shift">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#305f82">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/days-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/rubik-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v=27">
+<link rel="stylesheet" href="/tools/tools.css?v=1">
+<style>:root{--suit:#6ca9d8;--line:#4a8cc0;--title:#305f82;--suit-soft:#e6f1fa;--on-suit:#ffffff}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--title:#8fc3ec;--suit-soft:#1f3242;--line:#6ca9d8}}:root[data-theme="dark"]{--title:#8fc3ec;--suit-soft:#1f3242;--line:#6ca9d8}.tp-prog{width:100%;max-width:60rem;display:grid;gap:.4rem}.tp-bar{list-style:none;margin:0;padding:0;display:flex;gap:.3rem;height:.9rem}.tp-bar li{position:relative;min-width:.6rem;border-radius:999px;background:var(--suit-soft);border:1px solid var(--line);overflow:hidden}.tp-bar li i{position:absolute;inset:0 auto 0 0;width:0;background:var(--line)}.tp-bar li.done i{width:100%}.tp-bar li.cur{border-width:2px;border-color:var(--title)}.tp-bar li.cur i{background:var(--title)}.tp-way{margin:0;display:inline-block;padding:.3rem 1rem;border-radius:999px;background:var(--suit-soft);color:var(--title);border:2px solid var(--line);font:700 clamp(1rem,2.4vw,1.6rem)/1.2 var(--body);text-transform:uppercase;letter-spacing:.06em}.tstage .big.tp-name,.tstage:fullscreen .big.tp-name{font-size:clamp(2rem,7vw,5rem)}.tstage .clock#tp-clock{font-size:clamp(3.5rem,16vw,10rem)}.tstage:fullscreen .clock#tp-clock{font-size:clamp(5rem,20vw,16rem)}.tstage.tp-shift{border-top-color:var(--title);background:var(--suit-soft)}.tstage.tp-shift .tp-name{font-size:clamp(3.5rem,14vw,10rem)}.tp-auto{color:var(--ink)}.tp-list{list-style:none;margin:0;padding:0;display:grid;gap:.75rem}.tp-item{display:grid;grid-template-columns:minmax(0,1fr) 6rem 11rem auto;gap:.5rem;align-items:end;padding:.7rem;background:var(--bg);border:1px solid var(--rule);border-radius:var(--r)}.tp-item .fld{min-width:0}.tp-item .fld input[type=number]{max-width:none}.tp-btns{display:flex;gap:.3rem}.tp-btns .icon-btn{font-size:1.1rem}.tp-btns .icon-btn[disabled]{opacity:.4;cursor:not-allowed}@media (max-width:760px){  .tp-item{grid-template-columns:1fr 1fr}  .tp-item .fld:first-child,.tp-btns{grid-column:1/-1}}.tp-plan{list-style:none;margin:0;padding:0;display:grid;gap:.5rem;width:100%;max-width:46rem;text-align:left}.tp-plan li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.1rem .8rem;align-items:baseline;padding:.6rem .9rem;border:2px solid var(--line);border-radius:var(--r);background:var(--suit-soft);color:var(--ink);font:500 clamp(1.1rem,2.6vw,1.8rem)/1.25 var(--body);overflow-wrap:anywhere}.tp-plan li b{color:var(--title);font-weight:700}.tp-plan li span{color:var(--muted);font-size:.8em}.tp-plan li.cur{border-color:var(--title);background:var(--surface)}.tp-plan li.done{opacity:.6}</style>
+</head>
+<body class="page-tool">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap hbar">
+    <a class="hbrand" href="/" aria-label="Lesson Shuffle, all cards">
+      <picture class="logo-h"><source media="(prefers-color-scheme: dark)" srcset="/brand/logo-horizontal-dark.svg"><img src="/brand/logo-horizontal-light.svg" alt="" width="920" height="280"></picture>
+      <img class="logo-i" src="/brand/icon.svg" alt="" width="430" height="430">
+    </a>
+    <nav class="hnav" aria-label="Main">
+      <ul class="hnav-inline">
+        <li><a href="/">All cards</a></li>
+        <li><a href="/how-to-play">How to play</a></li>
+        <li><a href="/printables">Printables</a></li>
+      </ul>
+      <details class="hmenu">
+        <summary>Menu</summary>
+        <div class="hmenu-panel">
+          <ul class="hmenu-list wrap" role="list">
+            <li><a href="/">All cards</a></li>
+            <li><a href="/how-to-play">How to play</a></li>
+            <li><a href="/printables">Printables</a></li>
+            <li class="hmenu-sep" aria-hidden="true"></li>
+            <li><a href="https://lessonshuffle.com/">Lesson Shuffle home</a></li>
+          </ul>
+        </div>
+      </details>
+    </nav>
+  </div>
+</header>
+
+<section class="tool-hero" aria-labelledby="t-h"><div class="wrap">
+  <a class="tback" href="/ten-po-shift">← Ten-Po Shift guide</a>
+  <div class="eyebrow"><span class="suit">Instructional Delivery</span><span>Classroom tool</span></div>
+  <h1 id="t-h">Ten-Po Shift block timer</h1>
+  <p class="tsub">Run the whole period on the projector: one block at a time, a countdown, and a clear Shift between blocks.</p>
+</div></section>
+<main id="main" class="wrap tool-main">
+  <section class="tstage" id="stage" aria-label="Block timer">
+    <div class="tstage-bar">
+      <button type="button" class="btn-ghost" data-sound aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4z"/></svg><span>Sound on</span></button>
+      <button type="button" class="btn-ghost" id="fs" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v2H6v4H4zm10 0h6v6h-2V6h-4zM4 14h2v4h4v2H4zm14 0h2v6h-6v-2h4z"/></svg><span>Full screen</span></button>
+    </div>
+    <div class="tstage-body">
+      <div class="tp-prog">
+        <p class="small" id="tp-count">Block 1 of 4</p>
+        <ol class="tp-bar" id="tp-bar" aria-hidden="true"></ol>
+      </div>
+      <p class="tp-way" id="tp-way"></p>
+      <p class="big tp-name" id="tp-name" aria-live="off">Learn it</p>
+      <p class="mid" id="tp-do"></p>
+      <p class="clock" id="tp-clock" aria-live="off">10:00</p>
+      <ol class="tp-plan" id="tp-planlist" hidden></ol>
+      <p class="small" id="tp-next"></p>
+      <p class="small tp-auto" id="tp-auto" hidden></p>
+      <div class="controls">
+        <button type="button" class="btn-main btn-big" id="tp-go">Start</button>
+        <button type="button" class="btn-ghost btn-big" id="tp-minus">-1 min</button>
+        <button type="button" class="btn-ghost btn-big" id="tp-plus">+1 min</button>
+        <button type="button" class="btn-ghost btn-big" id="tp-skip">Skip to next</button>
+        <button type="button" class="btn-ghost btn-big" id="tp-show" aria-pressed="false">Show plan</button>
+        <button type="button" class="btn-ghost btn-big" id="tp-restart">Restart lesson</button>
+      </div>
+      <p class="kbd-hint">Keys: <kbd>Space</kbd> start or pause · <kbd>N</kbd> next block · <kbd>P</kbd> plan · <kbd>+</kbd> <kbd>-</kbd> add or remove a minute · <kbd>R</kbd> restart</p>
+    </div>
+  </section>
+
+  <details class="tsetup" id="setup">
+    <summary>Plan your blocks</summary>
+    <div class="tsetup-b">
+      <p class="hint" id="tp-hint">Four blocks of about ten minutes, each a different way to work. Change any of it. Changes apply right away, even mid-lesson.</p>
+      <ol class="tp-list" id="tp-list" aria-describedby="tp-hint"></ol>
+      <div class="trow">
+        <button type="button" class="btn-ghost" id="tp-add">Add a block</button>
+        <button type="button" class="btn-ghost" id="tp-reset">Back to the default plan</button>
+        <button type="button" class="btn-ghost" id="tp-link">Copy setup link</button>
+      </div>
+      <p class="msg" id="tp-msg" aria-live="polite"></p>
+      <label class="check"><input type="checkbox" id="tp-autochk"> Auto-start the next block after 30 seconds</label>
+      <p class="privacy">Your plan is saved in this browser only. Nothing is sent anywhere, and there is no sign-in. A setup link keeps the plan inside the link itself.</p>
+    </div>
+  </details>
+
+  <section class="howto" aria-labelledby="how-h">
+    <h2 id="how-h">How to use it</h2>
+    <ol>
+      <li>Before class, plan the blocks: about ten minutes each, a different way to work in each. Open <b>Plan your blocks</b> to change them.</li>
+      <li>Post the plan on the board and say: "Here's our game plan. Four parts, about ten minutes each. Watch the timer."</li>
+      <li>Press <b>Start</b> at the beginning of each block. The countdown and the progress bar stay on the projector.</li>
+      <li>When the timer ends, the Shift screen shows what is next. Switch seats, partners or materials, then press <b>Start next block</b>.</li>
+    </ol>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="suit-tabs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="wrap fgrid">
+    <div class="fbrand">
+      <img class="flogo" src="/brand/logo-horizontal-dark.svg" width="920" height="280" alt="Lesson Shuffle logo" loading="lazy">
+      <p class="ftag">Shuffle. Pick. Grow.</p>
+    </div>
+    <nav aria-label="Cards site">
+      <p class="flabel">Cards</p>
+      <ul>
+        <li><a href="/">All cards</a></li>
+        <li><a href="/how-to-play">How to play</a></li>
+        <li><a href="/printables">Printables</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Lesson Shuffle">
+      <p class="flabel">Lesson Shuffle</p>
+      <ul>
+        <li><a href="https://lessonshuffle.com/">Home</a></li>
+        <li><a href="https://apps.lessonshuffle.com/">Tools<span class="sr"> (opens the tools site)</span></a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap fbase"><p class="made">Made by Patrick McMillan, Lesson Shuffle. Works offline after your first visit.</p></div>
+</footer>
+
+<script src="/tools/tools.js?v=1"></script>
+<script src="/tools/ten-po-shift.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flow Finder transition timer · Lesson Shuffle</title>
+<meta name="description" content="A count-up transition timer for the Flow Finder card: a student timekeeper plays the chime, times the switch, and the class chases a record under one minute. Times stay on this device.">
+<link rel="canonical" href="https://cards.lessonshuffle.com/tools/flow-finder">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#305f82">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/days-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/rubik-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v=27">
+<link rel="stylesheet" href="/tools/tools.css?v=1">
+<style>:root{--suit:#e57373;--line:#d05a6a;--title:#b13b55;--suit-soft:#fbe6e9;--on-suit:#ffffff}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--title:#f19aa9;--suit-soft:#3a2128;--line:#e57373}}:root[data-theme="dark"]{--title:#f19aa9;--suit-soft:#3a2128;--line:#e57373}.ff-go{min-height:72px;font-size:clamp(1.3rem,4vw,2rem);padding:1rem 2.2rem;max-width:100%}.ff-stats{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:center;margin:0;font:500 clamp(1.05rem,2.4vw,1.6rem)/1.3 var(--body);color:var(--ink)}.ff-stats b{color:var(--title)}.ff-goal{margin:0;font:500 clamp(1rem,2.2vw,1.4rem)/1.35 var(--body);color:var(--ink);padding:.5rem 1rem;border-radius:.6rem;background:var(--suit-soft);max-width:100%;text-wrap:balance}.ff-goal.calm{border-left:.4rem solid var(--line)}.ff-times{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center}.ff-times li{padding:.25rem .65rem;border-radius:999px;background:var(--suit-soft);color:var(--title);font-weight:500;font-variant-numeric:tabular-nums}.ff-times li.best{outline:2px solid var(--line)}.ff-sub{margin:0;font-weight:500}.tstage.flash{animation:ff-flash 1.2s ease-out 1}@keyframes ff-flash{0%,60%{box-shadow:inset 0 0 0 .6rem var(--line)}100%{box-shadow:inset 0 0 0 .6rem transparent}}@media (prefers-reduced-motion:reduce){.tstage.flash{animation:none;box-shadow:inset 0 0 0 .6rem var(--line)}}.ff-res{display:flex;flex-direction:column;align-items:center;gap:.5rem;max-width:100%}@media (min-width:900px){.ff-res{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:.5rem 2rem}}.tstage:fullscreen .tstage-body{gap:.5rem}.tstage:fullscreen .clock{font-size:clamp(3rem,13vh,8rem)}.tstage:fullscreen .big{font-size:clamp(2.5rem,11vh,7rem)}.tstage:fullscreen{padding:1rem 2rem}</style>
+</head>
+<body class="page-tool">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap hbar">
+    <a class="hbrand" href="/" aria-label="Lesson Shuffle, all cards">
+      <picture class="logo-h"><source media="(prefers-color-scheme: dark)" srcset="/brand/logo-horizontal-dark.svg"><img src="/brand/logo-horizontal-light.svg" alt="" width="920" height="280"></picture>
+      <img class="logo-i" src="/brand/icon.svg" alt="" width="430" height="430">
+    </a>
+    <nav class="hnav" aria-label="Main">
+      <ul class="hnav-inline">
+        <li><a href="/">All cards</a></li>
+        <li><a href="/how-to-play">How to play</a></li>
+        <li><a href="/printables">Printables</a></li>
+      </ul>
+      <details class="hmenu">
+        <summary>Menu</summary>
+        <div class="hmenu-panel">
+          <ul class="hmenu-list wrap" role="list">
+            <li><a href="/">All cards</a></li>
+            <li><a href="/how-to-play">How to play</a></li>
+            <li><a href="/printables">Printables</a></li>
+            <li class="hmenu-sep" aria-hidden="true"></li>
+            <li><a href="https://lessonshuffle.com/">Lesson Shuffle home</a></li>
+          </ul>
+        </div>
+      </details>
+    </nav>
+  </div>
+</header>
+
+<section class="tool-hero" aria-labelledby="t-h"><div class="wrap">
+  <a class="tback" href="/flow-finder">← Flow Finder guide</a>
+  <div class="eyebrow"><span class="suit">Classroom Systems &amp; Equity</span><span>Classroom tool</span></div>
+  <h1 id="t-h">Flow Finder transition timer</h1>
+  <p class="tsub">A student timekeeper plays the chime and counts up until the last student is ready. Beat the class record. Goal: under one minute.</p>
+</div></section>
+<main id="main" class="wrap tool-main">
+  <section class="tstage" id="stage" aria-label="Transition timer">
+    <div class="tstage-bar">
+      <button type="button" class="btn-ghost" data-sound aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4z"/></svg><span>Sound on</span></button>
+      <button type="button" class="btn-ghost" id="fs" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v2H6v4H4zm10 0h6v6h-2V6h-4zM4 14h2v4h4v2H4zm14 0h2v6h-6v-2h4z"/></svg><span>Full screen</span></button>
+    </div>
+    <div class="tstage-body">
+      <p class="small" id="classname"></p>
+      <p class="big" id="cue">Finish. Stand. Shift.</p>
+      <p class="mid" id="next" hidden></p>
+      <p class="clock" id="clock" role="timer" aria-live="off">0:00</p>
+      <div class="controls">
+        <button type="button" class="btn-main btn-big ff-go" id="go">Chime and start</button>
+      </div>
+      <p class="ff-goal" id="goal">Goal: under one minute.</p>
+      <div class="ff-res"><p class="ff-stats" id="stats"></p>
+      <ul class="ff-times" id="times" aria-label="Today's times"></ul></div>
+      <p class="kbd-hint">Keys: <kbd>Space</kbd> start or stop</p>
+    </div>
+  </section>
+
+  <details class="tsetup" id="setup">
+    <summary>Set up your timer</summary>
+    <div class="tsetup-b">
+      <div class="fld">
+        <label for="cue-in">Your transition call</label>
+        <input type="text" id="cue-in" maxlength="80" autocomplete="off">
+      </div>
+      <div class="fld">
+        <label for="next-in">What students do next (optional)</label>
+        <input type="text" id="next-in" maxlength="120" placeholder="Move to pairs and open to problem 2" autocomplete="off">
+      </div>
+      <div class="fld">
+        <label for="cls">Class</label>
+        <p class="hint">Each class keeps its own record. No student names.</p>
+        <div class="trow">
+          <select id="cls"></select>
+          <button type="button" class="btn-ghost" id="addcls">Add a class</button>
+          <button type="button" class="btn-ghost" id="rencls">Rename</button>
+          <button type="button" class="btn-ghost" id="delcls">Delete</button>
+        </div>
+      </div>
+      <div class="fld">
+        <span class="lab">Times</span>
+        <div class="trow">
+          <button type="button" class="btn-ghost" id="clrday">Clear today's times</button>
+          <button type="button" class="btn-ghost" id="clrrec">Reset record</button>
+        </div>
+        <p class="msg" id="msg" aria-live="polite"></p>
+      </div>
+      <p class="privacy">Your times and settings are saved in this browser only. Nothing is sent anywhere, and there is no sign-in. Clearing your browser data deletes them.</p>
+    </div>
+  </details>
+
+  <section class="howto" aria-labelledby="how-h">
+    <h2 id="how-h">How to use it</h2>
+    <ol>
+      <li>Pick one cue for every switch, like "Finish. Stand. Shift." Teach it once and practice.</li>
+      <li>Preview the next task in 10 seconds. Then press <b>Chime and start</b> and say the call.</li>
+      <li>The timekeeper presses <b>Everyone's ready: stop</b> when the last student is ready, then writes the time on the board next to the class record.</li>
+      <li>If it took over a minute, calmly practice that switch once more. Keep going until switches are under a minute.</li>
+    </ol>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="suit-tabs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="wrap fgrid">
+    <div class="fbrand">
+      <img class="flogo" src="/brand/logo-horizontal-dark.svg" width="920" height="280" alt="Lesson Shuffle logo" loading="lazy">
+      <p class="ftag">Shuffle. Pick. Grow.</p>
+    </div>
+    <nav aria-label="Cards site">
+      <p class="flabel">Cards</p>
+      <ul>
+        <li><a href="/">All cards</a></li>
+        <li><a href="/how-to-play">How to play</a></li>
+        <li><a href="/printables">Printables</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Lesson Shuffle">
+      <p class="flabel">Lesson Shuffle</p>
+      <ul>
+        <li><a href="https://lessonshuffle.com/">Home</a></li>
+        <li><a href="https://apps.lessonshuffle.com/">Tools<span class="sr"> (opens the tools site)</span></a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap fbase"><p class="made">Made by Patrick McMillan, Lesson Shuffle. Works offline after your first visit.</p></div>
+</footer>
+
+<script src="/tools/tools.js?v=1"></script>
+<script src="/tools/flow-finder.js?v=1"></script>
+</body>
+</html>
