@@ -18,3 +18,7 @@ The home page shows the cards as a fanned hand you flip through (with a Grid vie
   - `node tools/build-index.cjs` (rebuilds the page; it also reads each card page for the time label)
   - `py tools/printables/build_sw.py` (offline file list)
 - The card back is `public/brand/card-back.svg`. The shuffle and fan code is in `public/site.js` (search for "the shuffle table" and "The fanned hand"); styles are the last block of `public/style.css`.
+
+## Counting
+
+`public/track.js` (loaded by every page, including the printables) sends anonymous counts to `https://lessonshuffle.com/api/track`. The numbers show on the private stats page at lessonshuffle.com/stats/. It counts: links marked `data-track="label"`, email links (`email`), downloads (`download:<file>`), printable links (`printable:<slug>`), links to other sites (`out:<site>`), a printable being printed (`printed:<slug>`), and visits that arrive from a link with `utm_source` or `utm_campaign` (a campaign count with the source, medium and campaign). It sends only the label and the page path, never anything about the visitor, and it uses no cookies or storage. New links are counted automatically, so there is nothing to add by hand. Keep `/track.js` in the offline list (`tools/printables/build_sw.py` already does).
