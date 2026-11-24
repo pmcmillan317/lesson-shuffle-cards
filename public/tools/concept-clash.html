@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Concept Clash spinner · Lesson Shuffle</title>
+<meta name="description" content="A spinner for the Concept Clash card: pick an everyday object, ask how your concept is like it, then run a think timer and a partner prompt. Your lists stay on this device.">
+<link rel="canonical" href="https://cards.lessonshuffle.com/tools/concept-clash">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#305f82">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/days-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/rubik-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v=27">
+<link rel="stylesheet" href="/tools/tools.css?v=1">
+<style>:root{--suit:#6ca9d8;--line:#4a8cc0;--title:#305f82;--suit-soft:#e6f1fa;--on-suit:#ffffff}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--title:#8fc3ec;--suit-soft:#1f3242;--line:#6ca9d8}}:root[data-theme="dark"]{--title:#8fc3ec;--suit-soft:#1f3242;--line:#6ca9d8}.cc-q{font:400 clamp(2rem,6.5vw,5.2rem)/1.12 var(--display);color:var(--title);margin:0;max-width:62rem;overflow-wrap:anywhere;text-wrap:balance}.tstage:fullscreen .cc-q{font-size:clamp(2.6rem,8vw,7.5rem)}.cc-q b{font-weight:400;color:var(--ink)}.cc-lines{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}.cc-lines li{font:500 clamp(1.3rem,3.6vw,2.6rem)/1.25 var(--body);color:var(--ink);overflow-wrap:anywhere}.tstage:fullscreen .cc-lines li{font-size:clamp(1.6rem,4.2vw,3.4rem)}.cc-n{min-height:1.3em}</style>
+</head>
+<body class="page-tool">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap hbar">
+    <a class="hbrand" href="/" aria-label="Lesson Shuffle, all cards">
+      <picture class="logo-h"><source media="(prefers-color-scheme: dark)" srcset="/brand/logo-horizontal-dark.svg"><img src="/brand/logo-horizontal-light.svg" alt="" width="920" height="280"></picture>
+      <img class="logo-i" src="/brand/icon.svg" alt="" width="430" height="430">
+    </a>
+    <nav class="hnav" aria-label="Main">
+      <ul class="hnav-inline">
+        <li><a href="/">All cards</a></li>
+        <li><a href="/how-to-play">How to play</a></li>
+        <li><a href="/printables">Printables</a></li>
+      </ul>
+      <details class="hmenu">
+        <summary>Menu</summary>
+        <div class="hmenu-panel">
+          <ul class="hmenu-list wrap" role="list">
+            <li><a href="/">All cards</a></li>
+            <li><a href="/how-to-play">How to play</a></li>
+            <li><a href="/printables">Printables</a></li>
+            <li class="hmenu-sep" aria-hidden="true"></li>
+            <li><a href="https://lessonshuffle.com/">Lesson Shuffle home</a></li>
+          </ul>
+        </div>
+      </details>
+    </nav>
+  </div>
+</header>
+
+<section class="tool-hero" aria-labelledby="t-h"><div class="wrap">
+  <a class="tback" href="/concept-clash">← Concept Clash guide</a>
+  <div class="eyebrow"><span class="suit">Instructional Delivery</span><span>Classroom tool</span></div>
+  <h1 id="t-h">Concept Clash spinner</h1>
+  <p class="tsub">Spin for an everyday object, then ask how today's concept is like it. Think alone first, then tell a partner.</p>
+</div></section>
+<main id="main" class="wrap tool-main">
+  <section class="tstage" id="stage" aria-label="Spinner">
+    <div class="tstage-bar">
+      <button type="button" class="btn-ghost" data-sound aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4z"/></svg><span>Sound on</span></button>
+      <button type="button" class="btn-ghost" id="fs" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v2H6v4H4zm10 0h6v6h-2V6h-4zM4 14h2v4h4v2H4zm14 0h2v6h-6v-2h4z"/></svg><span>Full screen</span></button>
+    </div>
+    <div class="tstage-body">
+      <p class="small" id="concept-label"></p>
+      <p class="cc-q" id="q" aria-live="polite">Ready?</p>
+      <div class="ring" id="ring" hidden><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="rt" cx="50" cy="50" r="44"/><circle class="rv" id="ringv" cx="50" cy="50" r="44" stroke-dasharray="276.46" stroke-dashoffset="0"/></svg><p class="clock" id="clock" aria-live="off">30</p></div>
+      <ul class="cc-lines" id="lines" hidden></ul>
+      <p class="small cc-n" id="hint">Add today's concept under Set up, then spin.</p>
+      <div class="controls">
+        <button type="button" class="btn-main btn-big" id="go">Spin</button>
+        <button type="button" class="btn-ghost btn-big" id="skip" hidden>Skip to partners</button>
+        <button type="button" class="btn-ghost btn-big" id="ptimer" hidden>Start partner timer</button>
+        <button type="button" class="btn-main btn-big" id="close" hidden>Close</button>
+      </div>
+      <p class="kbd-hint">Keys: <kbd>Space</kbd> or <kbd>S</kbd> spin · <kbd>N</kbd> next step (think, partner, close) · <kbd>T</kbd> partner timer</p>
+    </div>
+  </section>
+
+  <details class="tsetup" id="setup">
+    <summary>Set up your spinner</summary>
+    <div class="tsetup-b">
+      <div class="fld">
+        <label for="concept">Today's concept</label>
+        <p class="hint" id="concept-hint">Type one idea, or a few vocabulary words (one per line) and one is picked each spin. Commas stay part of the text.</p>
+        <textarea id="concept" rows="2" aria-describedby="concept-hint" spellcheck="false" autocomplete="off" placeholder="a simile"></textarea>
+      </div>
+      <div class="fld">
+        <label for="objs">Everyday objects, one per line</label>
+        <p class="hint" id="objs-hint">Keep them concrete and familiar, with "a" or "an" (a ladder). Each one comes up once before any repeats.</p>
+        <textarea id="objs" aria-describedby="objs-hint" spellcheck="false" autocomplete="off"></textarea>
+        <p class="msg" id="count" aria-live="polite"></p>
+        <div class="trow"><button type="button" class="btn-ghost" id="reset">Restore the default list</button></div>
+      </div>
+      <div class="fld">
+        <label for="think-s">Think time in seconds</label>
+        <input type="number" id="think-s" min="5" max="300" step="5" value="30">
+      </div>
+      <div class="fld">
+        <label for="ptime">Partner time in seconds</label>
+        <input type="number" id="ptime" min="15" max="600" step="15" value="90">
+      </div>
+      <div class="fld">
+        <div class="trow"><button type="button" class="btn-ghost" id="link">Copy setup link</button></div>
+        <p class="msg" id="linkmsg" aria-live="polite">Copies your concept and object list into a link you can paste to open this setup on another device.</p>
+      </div>
+      <p class="privacy">Your concept and list are saved in this browser only. Nothing you type leaves this device, and there is no sign-in. A setup link holds your text in the link itself, so share it only where you would share the list.</p>
+    </div>
+  </details>
+
+  <section class="howto" aria-labelledby="how-h">
+    <h2 id="how-h">How to use it</h2>
+    <ol>
+      <li>Model one pairing yourself first, aloud: one way they are alike and where it stops working.</li>
+      <li>Type today's concept under Set up, then press <b>Spin</b>. Read the question aloud and tell students to think on their own first. They may jot a few words.</li>
+      <li>When the think timer ends, students tell a partner one way the two are alike and where the comparison stops working. Press <b>Start partner timer</b> if you want it timed.</li>
+      <li>Take three answers. After each, ask the class: "Does that comparison hold up? Where does it stop working?"</li>
+      <li>Press <b>Close</b> and have students finish the sentence frame to keep the idea in mind.</li>
+    </ol>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="suit-tabs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="wrap fgrid">
+    <div class="fbrand">
+      <img class="flogo" src="/brand/logo-horizontal-dark.svg" width="920" height="280" alt="Lesson Shuffle logo" loading="lazy">
+      <p class="ftag">Shuffle. Pick. Grow.</p>
+    </div>
+    <nav aria-label="Cards site">
+      <p class="flabel">Cards</p>
+      <ul>
+        <li><a href="/">All cards</a></li>
+        <li><a href="/how-to-play">How to play</a></li>
+        <li><a href="/printables">Printables</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Lesson Shuffle">
+      <p class="flabel">Lesson Shuffle</p>
+      <ul>
+        <li><a href="https://lessonshuffle.com/">Home</a></li>
+        <li><a href="https://apps.lessonshuffle.com/">Tools<span class="sr"> (opens the tools site)</span></a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap fbase"><p class="made">Made by Patrick McMillan, Lesson Shuffle. Works offline after your first visit.</p></div>
+</footer>
+
+<script src="/track.js?v=1" defer></script>
+<script src="/tools/tools.js?v=1"></script>
+<script src="/tools/concept-clash.js?v=1"></script>
+</body>
+</html>
