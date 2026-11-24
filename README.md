@@ -18,7 +18,3 @@ The home page shows the cards as a fanned hand you flip through (with a Grid vie
   - `node tools/build-index.cjs` (rebuilds the page; it also reads each card page for the time label)
   - `py tools/printables/build_sw.py` (offline file list)
 - The card back is `public/brand/card-back.svg`. The shuffle and fan code is in `public/site.js` (search for "the shuffle table" and "The fanned hand"); styles are the last block of `public/style.css`.
-
-## Web Analytics
-
-Every card page and `index.html` has the Cloudflare Web Analytics snippet just before `</body>` (page view counts for Patrick's private stats page, no cookies). Keep it when a page is rewritten, and copy it onto any new card page. The print sheets in `public/print/` do not have it.
