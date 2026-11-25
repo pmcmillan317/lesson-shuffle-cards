@@ -1,7 +1,7 @@
 import os,hashlib,json
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'public'))
 pages=['/']+['/'+f[:-5] for f in sorted(os.listdir('.')) if f.endswith('.html') and f not in('index.html','404.html')]+['/print/'+f[:-5] for f in sorted(os.listdir('print')) if f.endswith('.html')]
-assets=['/print.css?v=5','/style.css','/site.js','/track.js?v=1','/brand/logo-horizontal-light.svg','/brand/logo-horizontal-dark.svg','/brand/icon.svg','/brand/card-fan.webp','/brand/card-back.svg','/favicon.ico','/favicon.svg','/favicon.png','/apple-touch-icon.png','/manifest.webmanifest','/icon-192.png','/icon-512.png']+['/fonts/'+f for f in sorted(os.listdir('fonts')) if f.endswith('.woff2')]
+assets=['/print.css?v=5','/style.css','/site.js','/track.js?v=2','/brand/logo-horizontal-light.svg','/brand/logo-horizontal-dark.svg','/brand/icon.svg','/brand/card-fan.webp','/brand/card-back.svg','/favicon.ico','/favicon.svg','/favicon.png','/apple-touch-icon.png','/manifest.webmanifest','/icon-192.png','/icon-512.png']+['/fonts/'+f for f in sorted(os.listdir('fonts')) if f.endswith('.woff2')]
 imgs=['/cards/'+f for f in sorted(os.listdir('cards')) if f.endswith('.webp')]+['/cards/t/'+f for f in sorted(os.listdir('cards/t'))]
 h=hashlib.sha1()
 for f in sorted(os.listdir('.'))+['cards/'+x for x in sorted(os.listdir('cards'))]+['cards/t/'+x for x in sorted(os.listdir('cards/t'))]+['print/'+x for x in sorted(os.listdir('print'))]:
