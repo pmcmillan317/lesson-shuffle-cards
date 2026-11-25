@@ -1,4 +1,4 @@
-/* Lesson Shuffle card site: anonymous counts. No dependencies, no cookies, no storage.
+/* Lesson Shuffle card site: anonymous counts. No dependencies, sets no cookies, no storage.
    Sends small counts to https://lessonshuffle.com/api/track (see the stats page there). Only these are ever sent:
    the label, the page path, and for a campaign link the utm source, medium and campaign. Nothing about the visitor.
    Counted: links marked data-track, email links, downloads, printable and tool links, links to other sites,
@@ -6,6 +6,20 @@
    It never blocks or delays a link. Every page works without it. */
 (function () {
   "use strict";
+  // A browser signed in to the stats page on lessonshuffle.com carries the cookie "ls_me=1" (set there for all
+  // three sites). That browser is Patrick's own, so it is never counted: no page view, no click counts.
+  if (/(^|;\s*)ls_me=1(;|$)/.test(document.cookie)) return;
+
+  // Page views and visits: Cloudflare Web Analytics (cookieless). Cloudflare does not add it to this site
+  // by itself, so it is loaded here, with the site token of the lessonshuffle.com Web Analytics site.
+  try {
+    var cf = document.createElement("script");
+    cf.defer = true;
+    cf.src = "https://static.cloudflareinsights.com/beacon.min.js";
+    cf.setAttribute("data-cf-beacon", '{"token": "62954193f2df41488aee0b697433e7d7"}');
+    document.head.appendChild(cf);
+  } catch (err) { /* counting is optional */ }
+
   if (!navigator.sendBeacon) return;
   var URL_TRACK = "https://lessonshuffle.com/api/track";
   var OWN = ["lessonshuffle.com", "www.lessonshuffle.com", "apps.lessonshuffle.com", "cards.lessonshuffle.com"];

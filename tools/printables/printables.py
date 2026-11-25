@@ -525,7 +525,7 @@ def page(p):
 <body style="--suit:{color}">{sprite(body)}<header class="bar"><div class="bar-in"><a href="/printables" class="back">← All printables</a>
 <div class="meta"><b>{H.escape(p["title"])}</b><span>{H.escape(suit)} · For {" · ".join(f'<a href="/{c}">{H.escape(card_title(c))}</a>' for c in cards)}</span></div>
 <button type="button" onclick="window.print()" class="pbtn">{ic("printer", "ic bi2")}Print</button></div></header>
-<main>{body}</main><script src="/track.js?v=1" defer></script></body></html>'''
+<main>{body}</main><script src="/track.js?v=2" defer></script></body></html>'''
 
 CSS = r'''@font-face{font-family:"Days One";font-weight:400;font-display:swap;src:url(/fonts/days-one-latin-400-normal.woff2) format("woff2")}
 @font-face{font-family:"Rubik";font-weight:400;font-display:swap;src:url(/fonts/rubik-latin-400-normal.woff2) format("woff2")}
